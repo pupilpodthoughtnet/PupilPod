@@ -267,7 +267,7 @@ input.scrollable-header {
 	}
 	dropdown > div > div.dropdown-display {
 	background: white none repeat scroll 0 0;
-    border: 1px solid #dddddd;
+    border: 3px solid #488ECF;
     box-sizing: border-box;
     cursor: pointer;
     float: left;
