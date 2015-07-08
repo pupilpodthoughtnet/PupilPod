@@ -611,18 +611,21 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				}
 				//alert('Done All '+allMessages[0].notify_msg);
 				$scope.loading = false; */
+				if(tempData == null || tempData.length == 0){
+					$scope.messageDisplay = false;
+					alert('Notification false');
+					//deferred.resolve(false);
+					deferred.reject(false);
+				}
+				else{
+					$scope.allMessages = myCache.get('allMessages');
+					$scope.messageDisplay = true;
+					alert('Notification true');
+					deferred.resolve(true);
+				}
+				
 			},errorHandlerQuery); 
 		},errorHandlerTransaction,nullHandler);
-		if(tempData == null || tempData.length == 0){
-			$scope.messageDisplay = false;
-			alert('Notification false');
-			deferred.resolve(false);
-		}
-		else{
-			$scope.messageDisplay = true;
-			alert('Notification true');
-			deferred.resolve(true);
-		}
 		return deferred.promise;
 	};
 	
