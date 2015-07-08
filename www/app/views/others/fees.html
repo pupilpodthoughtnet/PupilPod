@@ -1,0 +1,14 @@
+<ion-view view-title="PupilPod">
+	<ion-content>
+		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
+		<div class="list">
+			<div class="item item-divider">
+				Fees Details
+			</div>
+			<div class="item">
+				<i class="icon ion-thumbsup"></i>No Fees Due<br/>
+				<button type="button" id="makePayment" ng-click="makePayment(1)">Pay <i class="icon ion-card"></i></button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

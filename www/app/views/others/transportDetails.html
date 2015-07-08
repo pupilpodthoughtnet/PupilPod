@@ -1,0 +1,17 @@
+<ion-view view-title="Pupilpod" >
+	<ion-content>
+		<div ng-show="!loading">
+				<div class="card">
+					<div class="item item-text-wrap">
+						Transport
+					</div>
+				</div>
+		</div>
+		<div class="col">
+                <div class="row card" ng-repeat="row in routeDetails" >
+						<span  style="margin-right:20px;width:25%;font-weight:bold;" ng-bind="row.label">:</span>
+						<span  style="width:50%;" ng-bind="row.value" > </span> 
+               </div>
+		</div> 
+	</ion-content>
+</ion-view>	

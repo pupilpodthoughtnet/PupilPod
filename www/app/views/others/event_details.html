@@ -1,0 +1,53 @@
+<ion-view view-title="Pupilpod" ng-controller="EventDetailController" ng-init="fnInit()">
+    <ion-content class="padding">
+        <div ng-show="!loading">
+
+            <H4><B><span ng-bind="event.name" /></B></h4>
+
+            <style>
+table, th , td  {
+ 
+  padding: 10px;
+  border-bottom:solid 1px;
+   border-collapse: collapse;
+   table-layout: fixed;
+}
+</style>
+		<table ng-table width="100%" class="table" >						
+				<tr>
+					<td data-title="'name'" style="text-align:left" >Name</td>
+					<td data-title="'description'" style="text-align:left">{{event.name}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >Details</td>
+					<td data-title="'description'" style="text-align:left">{{event.details}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >Category</td>
+					<td data-title="'description'" style="text-align:left">{{event.category}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >Start Date</td>
+					<td data-title="'description'" style="text-align:left">{{event.start_date}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >End Date</td>
+					<td data-title="'description'" style="text-align:left">{{event.end_date}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >Start Time</td>
+					<td data-title="'description'" style="text-align:left">{{event.start_time}}</td>
+				 </tr>
+				 <tr>
+					<td data-title="'name'" style="text-align:left" >End Time</td>
+					<td data-title="'description'" style="text-align:left">{{event.end_time}}</td>
+				 </tr>
+			</table>
+        </div>
+        <div ng-show="loading" style="margin-top: 150px;">
+            <div style="text-align: left;  margin-bottom: 40px !important;">
+                <ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

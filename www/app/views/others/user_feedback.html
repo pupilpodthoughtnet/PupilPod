@@ -1,0 +1,42 @@
+<ion-view view-title="Pupilpod" ng-controller="FeedbackController" ng-init="fnInit()">
+    <ion-content class="padding">
+        <div ng-show="!loading">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    User FeedBack
+                </div>
+            </div>
+
+            <div ng-show="loading" class="app-content-loading">
+                <i class="fa fa-circle-o-notch fa-spin"></i>
+            </div>
+            
+           <form name="FeedbackForm" role="form" class="simple-form"   ng-submit="FeedbackFormsubmit(1)">
+				<div class="form-group">
+						<select name="category"  class="topcoat-text-input" ng-model='category' style="width:100%"  required >
+						<option value="" selected>Select Category</option>
+						<option value="Report Problem">Report Problem</option>
+						<option value="Ask a Question">Ask a Question</option>
+						<option value="Share Suggestion">Share Suggestion</option>
+						</select>
+				</div>
+                <br/>
+				<div class="form-group">
+					<input type="email" name="email"  class="topcoat-text-input" ng-model='email' placeholder="Email ID" style="width:100%;padding-left: 20px;" value="" required />
+				</div>
+                <br/>
+                <div class="form-group">
+                    <textarea  name="message" ng-model="message" class="topcoat-text-input" placeholder="Your FeedBack" style="width:100%" value="" required >
+                    </textarea>
+				</div>
+                <br/>
+				<div class="form-group" style="text-align:center;width:100%">
+					<input type="submit" value="Submit"  id="FeedbackFormBut" class="button button-assertive" />
+				</div><br/>
+			</form>
+			<p style="font-size:20px;font-weight:bolder" ng-if='emailsent' >{{emailsent}}<br/></p>
+            <div style="color:blue;">Please feel free to get in touch, we value your feedback.<br/></div>
+            <div style="color:#A32929;font-size:12px;font-style:italic"><strong>Note:</strong> The feedback is for Pupilpod Software.For School specific queries,please contact the school directly.</div>
+        </div>
+    </ion-content>
+</ion-view>

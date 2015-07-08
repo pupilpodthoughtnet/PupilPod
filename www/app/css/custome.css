@@ -1,0 +1,128 @@
+/*.slidedown {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.slidedown.ng-enter,
+.slidedown.ng-leave {
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.slidedown.ng-enter {
+    top: -100%;
+}
+.slidedown.ng-enter-active {
+    top: 0;
+}
+.slidedown.ng-leave {
+    top: 0;
+}
+.slidedown.ng-leave-active {
+    top: 100%;
+}*/
+.ang-container{
+    padding-top: 20px;
+}
+.container{
+    padding-left: 13px;
+}
+.containerview{
+    margin-top: 10px;
+}
+/*.ng-scope{
+	padding-left:15px;
+}*/
+.app-modal-window .modal-dialog {
+    width: 650px;
+}
+ul.programSteps{
+	list-style-type:none;
+	list-style-image: url('/NBA/assets/images/right_arrow.png');
+	padding-left:0px;
+	margin-left:200px;
+}
+ul.programSteps li,a{
+	clear:both;
+	padding-top:10px;
+	padding-left:0px;
+	font-size:16px;
+	color:#222;
+}
+ul.programSteps a:hover{
+	color:#000;
+}
+ul.programSteps li a.notActive{
+	color:#A0A0A0;
+}
+ul.programSteps li div{
+	padding-left:5px;
+	float:left;
+}
+ul.programSteps li img{
+	float:right;
+	padding-right:500px;
+	margin-top:4px;
+}
+img.headImg{
+	width:48px;
+	height:48px;
+	float:left;
+}
+div.headDiv{
+	float:left;
+}
+div.tilePanelBody{
+	padding-bottom:50px;
+}
+
+
+
+
+
+
+
+.arrow-body a{
+	color:white;
+	text-decoration:none;
+}
+.arrow-body{
+	background-color:#286090;
+	border-bottom:solid 21.5px #286090;
+	padding:7px 10px 10px 10px;
+	height:40px;
+	float:left;
+	margin-right:25px;
+	position: relative;
+	background: #286090;
+	float:right;
+	padding:5px 10px;
+	margin-bottom:30px;
+	border: 2px solid #478ECB;
+}
+.arrow-body:after, .arrow_box:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow-body:after {
+	border-color: rgba(40, 96, 144, 0);
+	border-left-color: #286090;
+	border-width: 28px;
+	margin-top: -28px;
+}
+.arrow-body:before {
+	border-color: rgba(71, 142, 203, 0);
+	border-left-color: #478ECB;
+	border-width: 28px;
+	margin-top: -28px;
+}

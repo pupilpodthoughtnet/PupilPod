@@ -1,0 +1,18 @@
+<ion-view view-title="PupilPod">
+	<ion-content>
+		<ion-refresher on-refresh="doRefresh()"></ion-refresher>		
+		<div class="item item-divider">
+			Examinations
+		</div>
+		<div class="card" ng-repeat="details in studentTestDetails">
+			<div class="row row-center">
+				<a ng-click="goToDetails(details.test_instance_guid)">
+					<div class="col col-90">{{details.test_name}}</div>
+					<div class="col">
+						<i class="icon ion-chevron-right listNextArrow"></i>
+					</div>
+				</a>
+			</div>	
+		</div>
+	</ion-content>
+</ion-view>

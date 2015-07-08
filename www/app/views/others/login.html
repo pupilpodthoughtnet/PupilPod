@@ -1,0 +1,41 @@
+<ion-view view-title="PupilPod">
+	<ion-content>
+		<div ng-show="!loading">
+			<div class="card">
+				<div class="item item-text-wrap">
+					Please Enter login Details. School/College Url And username and password provided by organisation.
+				</div>
+			</div>
+			<div class="item item-divider">
+			Login
+			</div>
+			<div ng-show="loading" class="app-content-loading">
+			  <i class="fa fa-circle-o-notch fa-spin"></i>
+			</div>
+			<form name="loginForm" novalidate role="form" class="simple-form">
+				<label class="item item-input">
+					<input type="text" ng-model="login.instName" placeholder="Instance Name" ng-show="instDis" style="width:100%" value="" required />
+				</label>
+				<label class="item item-input">
+					<div>
+						<input type="text" ng-model="login.userName" placeholder="User Name" style="width:100%" value="" required />
+					</div>
+				</label>
+				<label class="item item-input">
+					<div>
+						<input type="password" ng-model="login.password" placeholder="Password" style="width:100%" value="" required />
+					</div>
+				</label>
+				<div class="padding">
+					<input type="button" value="Login" ng-click="submit(loginForm)" class="button button-block button-assertive"/> 
+				</div>
+			</form>
+		</div>
+		<div ng-show="loading">
+			<div style="text-align: center;  margin-bottom: 40px !important;">
+				<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
+					Please wait ...
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

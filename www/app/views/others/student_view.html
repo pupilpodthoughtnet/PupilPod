@@ -1,0 +1,27 @@
+<ion-view view-title="PupilPod">
+	<ion-content>
+		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
+		<div ng-show="!loading">
+			<div class="list">
+				<div class="item item-avatar">
+					<img src="{{studentImage}}" alt="Student Image" height="80" width="80"/>
+					<h2>{{studentName}}</h2>
+					<!--<p>November 05, 1955</p>-->
+				</div>
+
+				<div class="item" ng-repeat="details in studentDetails">
+					<div class="row">
+						<div class="col col-50">{{details.key}}</div>
+						<div class="col col-50">{{details.value}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div ng-show="loading">
+			<div style="text-align: center;  margin-bottom: 40px !important;">
+				<ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
+				Please wait ...
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

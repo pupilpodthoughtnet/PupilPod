@@ -1,0 +1,15 @@
+<ion-view view-title="PupilPod">
+	<ion-content>
+		<ion-refresher on-refresh="doRefresh()">	 
+		</ion-refresher>
+		<div class="item item-divider">
+			{{testName}}
+		</div>
+		<div class="card" ng-repeat="details in studentTestMarks">
+			<div class="row row-center">
+				<div class="col col-80" style="border-right:solid 2px #EFEFEF;">{{details.subject_name}}</div>
+				<div class="col col-20 text-center">{{details.marks_obtained}}</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

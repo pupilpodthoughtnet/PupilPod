@@ -1,0 +1,38 @@
+<ion-view view-title="Pupilpod">
+    <ion-content>
+			<div class="item item-divider">
+				Attendance
+			</div>
+			<div class="card">
+				<div class="row row-center">
+					<div><a ng-click="prev()" style="width:80px;float:left;" class="button icon-left ion-chevron-left button-clear button-dark">Prev</a></div>
+					<div class="h4 text-center" style="width:100%;">{{monthyear}}</div>
+					<div><a ng-click="next()" style="width:80px;float:right;" class="button icon-right ion-chevron-right button-clear button-dark">Next</a></div>
+				</div>
+			</div>
+			<div ng-show="loading">
+				<div style="text-align: center;">
+					<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+				</div>
+			</div>
+			<div ng-show="!loading">
+				<div class="text-center" ng-if='!fail'><small>Periods marked as absent</small></div>
+				<div class="card" ng-repeat="attendance in attendances">
+					<div class="row row-center" ng-if='type == 1'>
+						<div class="col col-20 text-center">Period {{attendance.slot}}</div>
+						<div class="col col-30 text-center">{{attendance.date}}</div>
+						<div class="col col-50 text-center">{{attendance.subject}}</div>
+					</div>
+					<div class="row row-center" ng-if='type == 0'>
+						<div class="col col-20 text-center">Period {{attendance.slot}}</div>
+						<div class="col col-80 text-center">{{attendance.date}}</div>
+					</div>
+				</div>
+				<div class="card" ng-if='fail'>
+					<div class="row row-center">
+						<div class="col text-center">{{fail}}</div>
+					</div>	
+				</div>
+			</div>	
+ </ion-content>
+</ion-view>
