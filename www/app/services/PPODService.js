@@ -591,11 +591,12 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			var t_Date = Date();
 			var tempData = {};
 			alert('Inside getAllNotification');
-			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
+			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT3)
 			{
-				for (var i = 0; i < resultT2.rows.length; i++) {
-					alert('Notification');
-					var row = resultT2.rows.item(i);
+				for (var i = 0; i < resultT3.rows.length; i++) {
+					
+					var row = resultT3.rows.item(i);
+					alert('Notification '+row.notify_msg);
 					tempData.push(row);
 				}
 			},errorHandlerQuery); 
