@@ -739,6 +739,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		var promise = PPODService.getAllNotification($scope,sharedProperties);
 		promise.then(function(result) {
 			if(result){
+				alert('Hi True Yes');
 				$scope.loading = false;
 				$scope.messageDisplay = true;
 				$scope.allMessages = myCache.get('allMessages');

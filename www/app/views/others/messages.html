@@ -4,13 +4,13 @@
 			<div class="item item-divider">
 				Messages
 			</div>
-			<!--<div ng-if="!messageDisplay">-->
+			<div ng-if="!messageDisplay">
 				<div class="card">
 					<div class="row row-center">
 						<div class="text-center" style="padding:0px 5px;">We don't have any notifications to show you.</div>
 					</div>
 				</div>
-			<!--</div>-->
+			</div>
 			{{messageDisplay}}
 			<pre>{{allMessages}}</pre>
 			<div class="card" ng-repeat="item in allMessages">
