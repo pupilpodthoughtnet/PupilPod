@@ -411,9 +411,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
+		
+		alert('NG '+notificationDetails.notify_guid);
+		alert('ND '+notificationDetails.notify_date);
+		alert('NT '+notificationDetails.notify_type)
+		alert('NM '+notificationDetails.notify_msg);
+		alert('EG '+notificationDetails.entity_guid);
+		
 		$scope.db.transaction(function(transaction) {
-			var t_Date = Date();
-			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
+			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.notify_guid,notificationDetails.notify_date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
 		},errorHandlerTransaction,nullHandler);
 	};
 	
