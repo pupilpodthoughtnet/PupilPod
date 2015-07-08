@@ -706,6 +706,7 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
         });
     }
 });
+
 app.controller('NotificationController',function($scope,PPODService,sharedProperties){
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
@@ -716,11 +717,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
-		$scope.allMessages = myCache.get('allMessages');
-		if($scope.allMessages == null || $scope.allMessages.length == 0)
-			$scope.messageDisplay = false;
-		else
-			$scope.messageDisplay = true;
+		PPODService.getAllNotification($scope);
     }
 	$scope.fnViewDetails = function(item){
 		var pubobj = new Object();

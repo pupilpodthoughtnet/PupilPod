@@ -601,7 +601,11 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			},errorHandlerQuery); 
 			myCache.put('allMessages',tempData);
 		},errorHandlerTransaction,nullHandler);
-		
+		$scope.allMessages = tempData;
+		if(tempData == null || tempData.length == 0)
+			$scope.messageDisplay = false;
+		else
+			$scope.messageDisplay = true;
 	};
 	
 	
