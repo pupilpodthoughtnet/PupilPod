@@ -8,7 +8,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	
 	$scope.student_name = sharedProperties.getStudentSelectedName();
-	$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 	
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();

@@ -11,7 +11,7 @@
 				</div>
 			</div>
 			<div ng-show="loading">
-				<div style="text-align: center;">
+				<div style="text-align:center;">
 					<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
 				</div>
 			</div>
@@ -21,11 +21,11 @@
 					<div class="row row-center" ng-if='type == 1'>
 						<div class="col col-20 text-center">Period {{attendance.slot}}</div>
 						<div class="col col-30 text-center">{{attendance.date}}</div>
-						<div class="col col-50 text-center">{{attendance.subject}}</div>
+						<div class="col col-50 text-right">{{attendance.subject}}</div>
 					</div>
 					<div class="row row-center" ng-if='type == 0'>
 						<div class="col col-20 text-center">Period {{attendance.slot}}</div>
-						<div class="col col-80 text-center">{{attendance.date}}</div>
+						<div class="col col-80 text-right">{{attendance.date}}</div>
 					</div>
 				</div>
 				<div class="card" ng-if='fail'>

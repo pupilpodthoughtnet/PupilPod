@@ -1,34 +1,24 @@
 <ion-view view-title="Pupilpod" ng-controller="PublicationController" ng-init="fnInit()">
-    <ion-content class="padding">
-        <div ng-show="!loading">
-            <div class="card">
-                <div class="item item-text-wrap">
-                    Publications
-                </div>
-
-            </div>
-
-            <div ng-show="loading" class="app-content-loading">
-                <i class="fa fa-circle-o-notch fa-spin"></i>
-            </div>
-            <div class="list"  >
-                <div class="item item-button-right" ng-repeat="item in publications" >
-                    <span ng-bind="item.published_date"> </span>
-                    <span ng-bind="item.name" style="margin-left: 50px;"> </span>
-                    <button class="button button-assertive" ng-click="fnViewDetails(item)">
-                        View Details
-                    </button>
-                </div>
-            </div>
-
-
-        </div>
-        <div ng-show="loading" style="margin-top: 150px;">
-            <div style="text-align: center;  margin-bottom: 40px !important;">
-                <ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
-            </div>
-        </div>
+    <ion-content>
+        <div>
+			<div class="item item-divider">
+				Publications
+			</div>
+			
+			<div class="card" ng-repeat="item in publications">
+				<div class="row row-center">
+					<div class="col col-20 text-left">{{item.published_date}}</div>
+					<div class="col col-70 text-left">{{item.name}}</div>
+					<div class="col col-10 text-right">
+						<button ng-click="fnViewDetails(item)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
+					</div>
+				</div>
+			</div>	
+		</div>
+        <div ng-show="loading">
+			<div style="text-align:center;">
+				<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+			</div>
+		</div>
     </ion-content>
-
-
 </ion-view>

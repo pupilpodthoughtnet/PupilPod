@@ -6,12 +6,10 @@
 		</div>
 		<div class="card" ng-repeat="details in studentTestDetails">
 			<div class="row row-center">
-				<a ng-click="goToDetails(details.test_instance_guid)">
-					<div class="col col-90">{{details.test_name}}</div>
-					<div class="col">
-						<i class="icon ion-chevron-right listNextArrow"></i>
-					</div>
-				</a>
+				<div class="col col-90">{{details.test_name}}</div>
+				<div class="col">
+					<button ng-click="goToDetails(details.test_instance_guid)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
+				</div>
 			</div>	
 		</div>
 	</ion-content>

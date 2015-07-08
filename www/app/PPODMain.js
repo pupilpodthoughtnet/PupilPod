@@ -229,6 +229,7 @@ app.service('sharedProperties', function () {
 	var event = new Array();
 	var month='';
 	var year='';
+	var _publicationRow='';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -319,6 +320,12 @@ app.service('sharedProperties', function () {
         },
         setYear: function(row){
             year = row;
+        },
+		setPublicationRow:function(_publicationRow){
+            this._publicationRow = _publicationRow;
+        },
+        getPublicationRow:function(){
+            return this._publicationRow;
         }
 	};
 });
