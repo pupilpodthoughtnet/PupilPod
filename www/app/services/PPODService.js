@@ -123,17 +123,19 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 							}
 						},errorHandlerQuery);
 						var tempData = new Array();
+						var tempData1 = new Array();
 						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
 						{
 							for (var i = 0; i < resultT2.rows.length; i++) {
 								var row = resultT2.rows.item(i);
-								tempData.push(row);
-								if(i > 2)
-									break;
+								if(i < 2){
+									tempData.push(row);
+								}
+								tempData1.push(row);
 							}
 						},errorHandlerQuery); 
 						myCache.put('messageDashboard',tempData);
-						
+						myCache.put('allMessages',tempData1);
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
 							alert('Error '+err);
@@ -578,7 +580,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
     };
 	
 	this.getAllNotification = function($scope,sharedProperties){
-		if($scope.db == null || $scope.db == ''){
+		/*if($scope.db == null || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
 			var displayName = 'Tnet_Pupilpod';
@@ -611,7 +613,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				}
 				//alert('Done All '+allMessages[0].notify_msg);
 				$scope.loading = false; */
-				if(tempData == null || tempData.length == 0){
+				/*if(tempData == null || tempData.length == 0){
 					$scope.messageDisplay = false;
 					alert('Notification false');
 					//deferred.resolve(false);
@@ -627,9 +629,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			},errorHandlerQuery); 
 		},errorHandlerTransaction,nullHandler);
 		return deferred.promise;
-	};
-	
-	
+	};*/
+	var deferred = $q.defer();
+	deferred.resolve(true);
+	return deferred.promise;
 });
 
 

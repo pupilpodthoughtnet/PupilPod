@@ -736,8 +736,8 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
-		var promise = PPODService.getAllNotification($scope,sharedProperties);
-		promise.then(function(result) {
+		//var promise = PPODService.getAllNotification($scope,sharedProperties);
+		/* promise.then(function(result) {
 			if(result){
 				alert('Hi True Yes');
 				$scope.loading = false;
@@ -751,7 +751,13 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
         }, function(reason) {
 			$scope.loading = false;
             alert(reason);
-        });
+        }); */
+		$scope.allMessages = myCache.get('allMessages');
+		if($scope.allMessages.length == 0){
+			alert('Exist');
+			$scope.loading = false;
+			$scope.messageDisplay = true;
+		}
     };
 	$scope.fnViewDetails = function(item){
 		var pubobj = new Object();
