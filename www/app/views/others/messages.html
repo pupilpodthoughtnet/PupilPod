@@ -4,6 +4,11 @@
 			<div class="item item-divider">
 				Messages
 			</div>
+			<div ng-show="loading">
+				<div style="text-align:center;">
+					<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+				</div>
+			</div>
 			<div ng-if="!messageDisplay">
 				<div class="card">
 					<div class="row row-center">
@@ -11,8 +16,6 @@
 					</div>
 				</div>
 			</div>
-			{{messageDisplay}}
-			<pre>{{allMessages}}</pre>
 			<div class="card" ng-repeat="item in allMessages">
 				<div class="row row-center">
 					<div class="col col-80 text-left">{{item.notify_msg}}</div>
@@ -24,10 +27,6 @@
 				</div>
 			</div>	
 		</div>
-        <div ng-show="loading">
-			<div style="text-align:center;">
-				<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
-			</div>
-		</div>
+        
     </ion-content>
 </ion-view>
