@@ -4,7 +4,7 @@
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
 		<div ng-show="!loading">
 			<div class="card">
-				<div class="item item-divider yellowbar" ng-click="goToView()">
+				<div class="item item-divider yellowbar" ng-click="goToView('eventmenu.messages')">
 					<div class="row" style="padding:0px;">
 					<div style="width:100%">Messages</div>
 					<button class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
@@ -16,12 +16,13 @@
 						<p class="text-center"><small>-/-/-</small></p>
 					</div>
 					<div class="card" ng-repeat="details in messageDashboard">
-						<div class="text-center" style="padding:0px 5px;">{{details.notify_msg}}</div>
-						<p class="text-center"><small>{{details.notify_date}}</small></p>
-						<div ng-if="details.notify_type == 'publication'">
-							<div class="col col-20 text-right">
-								<button ng-click="fnViewDetails(details)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
-							</div>
+						<div ng-click="fnViewDetails(details)" ng-if="details.notify_type == 'publication'">
+							<div class="text-center" style="padding:0px 5px;">{{details.notify_msg}}</div>
+							<p class="text-center"><small>{{details.notify_date}}</small></p>
+						</div>
+						<div ng-if="details.notify_type != 'publication'">
+							<div class="text-center" style="padding:0px 5px;">{{details.notify_msg}}</div>
+							<p class="text-center"><small>{{details.notify_date}}</small></p>
 						</div>
 					</div>
 				</div>

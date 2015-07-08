@@ -395,8 +395,9 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
-	$scope.goToView = function(){
+	$scope.goToView = function(stateUrl){
 		alert('View Called');
+		$state.go(stateUrl);
 	};
 });
 
