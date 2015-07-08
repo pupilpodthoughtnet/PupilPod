@@ -399,7 +399,6 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}, 1000);
     };
 	$scope.goToView = function(stateUrl){
-		alert('View Called');
 		$state.go(stateUrl);
 	};
 });
