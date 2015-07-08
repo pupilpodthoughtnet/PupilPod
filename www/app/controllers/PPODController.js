@@ -8,6 +8,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	$scope.loginTrue = sharedProperties.getIsLogin();
 	
 	$scope.student_name = sharedProperties.getStudentSelectedName();
+	$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 	
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -60,6 +61,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
+			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 		}
 		else{
 			$scope.loginTrue = true;
@@ -103,6 +105,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	$rootScope.$on('studentChanged',function(event,args){
 		$scope.student_name = args['name'];
+		$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 		$state.go('eventmenu.change_student');
 			return false;
 	});
