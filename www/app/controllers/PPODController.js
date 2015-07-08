@@ -716,7 +716,7 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
     }
 });
 
-app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state){
+app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
