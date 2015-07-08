@@ -310,7 +310,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			alert('Databases are not supported in this browser.');
 			return;
 		}
-		
+		if($scope.db == null || $scope.db == ''){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
 		$scope.db.transaction(function(transaction) {
 			transaction.executeSql("SELECT * FROM tnet_login_details", [],function(transaction, resultT1)
 			{
