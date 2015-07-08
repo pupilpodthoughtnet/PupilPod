@@ -590,14 +590,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		$scope.db.transaction(function(transaction) {
 			var t_Date = Date();
 			var tempData = {};
-						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
-						{
-							for (var i = 0; i < resultT2.rows.length; i++) {
-								var row = resultT2.rows.item(i);
-								tempData.push(row);
-							}
-						},errorHandlerQuery); 
-						myCache.put('allMessages',tempData);
+			alert('Inside getAllNotification');
+			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
+			{
+				for (var i = 0; i < resultT2.rows.length; i++) {
+					alert('Notification');
+					var row = resultT2.rows.item(i);
+					tempData.push(row);
+				}
+			},errorHandlerQuery); 
+			myCache.put('allMessages',tempData);
 		},errorHandlerTransaction,nullHandler);
 		
 	};

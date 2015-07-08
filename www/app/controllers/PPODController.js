@@ -87,7 +87,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			var msgObj = notification.message;
 			var objJSON = eval("(function(){return " + msgObj + ";})()");
 			PPODService.AddNotificationToDB($scope,objJSON);
-			$cordovaDialogs.alert(objJSON.message, "Push Notification Received");
+			$cordovaDialogs.alert(objJSON.notify_msg, "Push Notification Received");
 			break;
 
         case 'error':
@@ -709,6 +709,7 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
 app.controller('NotificationController',function($scope,PPODService,sharedProperties){
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
+			alert('Notification View');
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.spinning = true;
