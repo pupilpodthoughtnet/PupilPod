@@ -577,7 +577,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
         return deferred.promise;
     };
 	
-	this.getAllNotification = function($scope){
+	this.getAllNotification = function($scope,sharedProperties){
 		if($scope.db == null || $scope.db == ''){
 			var shortName = 'tnet_pupilpod';
 			var version = '1.0';
@@ -589,6 +589,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		}
 		$scope.db.transaction(function(transaction) {
 			var tempData = new Array();
+			var deferred = $q.defer();
 			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT3)
 			{
 				for (var i = 0; i < resultT3.rows.length; i++) {
@@ -597,18 +598,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					alert('Notification Got '+row.notify_msg);
 				}
 				myCache.put('allMessages',tempData);
-				$scope.allMessages = tempData;
-				alert('Length '+tempData.length);
 				if(tempData == null || tempData.length == 0){
-					$scope.messageDisplay = false;
-					alert('Notification false');
+					//$scope.messageDisplay = false;
+					deferred.reject("No Messages");
 				}
 				else{
-					$scope.messageDisplay = true;
-					alert('Notification true');
+					//$scope.messageDisplay = true;
+					deferred.resolve(fasle);
 				}
-				//alert('Done All '+allMessages[0].notify_msg);
-				$scope.loading = false;
+				
 			},errorHandlerQuery); 
 			
 		},errorHandlerTransaction,nullHandler);
