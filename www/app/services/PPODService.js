@@ -237,6 +237,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('cal_of_eventDashboard',data.coe_details);
 				myCache.put('attendanceDashboard',data.attendance_details);
 				myCache.put('feesDashboard',data.fees_details);
+				var param = {"studentImage": $scope.studentImage};
+				$scope.$emit('studentImageChange', param);
 			}
 			else{
 				$scope.loading = false;

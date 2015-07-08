@@ -109,6 +109,12 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			return false;
 	});
 	
+	$rootScope.$on('studentImageChange',function(event,args){
+		$scope.student_name = args['name'];
+		$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
+		return false;
+	});
+	
 	$scope.onReload = function() {
       console.warn('reload');
       var deferred = $q.defer();
