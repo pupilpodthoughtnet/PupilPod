@@ -5,10 +5,10 @@
 			Examinations
 		</div>
 		<div class="card" ng-repeat="details in studentTestDetails">
-			<div class="row row-center">
+			<div class="row row-center" ng-click="goToDetails(details.test_instance_guid)">
 				<div class="col col-90">{{details.test_name}}</div>
 				<div class="col">
-					<button ng-click="goToDetails(details.test_instance_guid)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
+					<button class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
 				</div>
 			</div>	
 		</div>

@@ -19,7 +19,7 @@
 			<div ng-show="!loading">
 				<div class="text-center" ng-if='!fail'><small>Events for the selected month</small></div>
 				<div class="card" ng-repeat="event in events">
-					<div class="row row-center">
+					<div class="row row-center" ng-click="fnViewDetails(event)">
 						<!--<div class="col col-20 text-center">{{event.date}}</div>-->
 						<div class="calenderDateCell">
 							<div class="calenderMonth">{{event.dayName}}</div>
@@ -27,7 +27,7 @@
 						</div>
 						<div class="col col-70 text-center">{{event.name}}</div>
 						<div class="col col-10">
-							<button ng-click="fnViewDetails(event)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
+							<button  class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
 						</div>
 					</div>
 				</div>

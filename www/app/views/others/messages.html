@@ -17,11 +17,11 @@
 				</div>
 			</div>
 			<div class="card" ng-repeat="item in allMessages">
-				<div class="row row-center">
+				<div class="row row-center" ng-click="fnViewDetails(item)">
 					<div class="col col-80 text-left">{{item.notify_msg}}</div>
 					<div ng-if="item.notify_type == 'publication'">
 						<div class="col col-20 text-right">
-							<button ng-click="fnViewDetails(item)" class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
+							<button class="button button-small button-clear button-dark icon icon-right ion-chevron-right" style="width:100%;"></button>
 						</div>
 					</div>
 				</div>
