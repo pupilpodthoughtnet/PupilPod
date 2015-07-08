@@ -726,21 +726,23 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
 });
 
 app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
+	$scope.messageDisplay = false;
+	$scope.allMessages = new Array();
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.spinning = true;
+		$scope.loading = true;
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
 		PPODService.getAllNotification($scope);
-    }
+    };
 	$scope.fnViewDetails = function(item){
 		var pubobj = new Object();
         pubobj['pG']  = item.entity_guid;
         pubobj['piG'] = item.notify_guid;
 		sharedProperties.setPublicationRow(pubobj);
 		$state.go('eventmenu.publication_details');
-	}
+	};
 });
