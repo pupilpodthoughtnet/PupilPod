@@ -587,9 +587,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			db.transaction(createTable,errorHandlerTransaction,nullHandler);
 			$scope.db = db;		
 		}
-		$scope.db.transaction(function(transaction) {
+		$scope.db.transaction(function(transaction,$scope) {
 			var tempData = new Array();
-			var deferred = $q.defer();
 			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT3)
 			{
 				for (var i = 0; i < resultT3.rows.length; i++) {
@@ -598,15 +597,18 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					alert('Notification Got '+row.notify_msg);
 				}
 				myCache.put('allMessages',tempData);
+				$scope.allMessages = tempData;
+				alert('Length '+tempData.length);
 				if(tempData == null || tempData.length == 0){
-					//$scope.messageDisplay = false;
-					deferred.reject("No Messages");
+					$scope.messageDisplay = false;
+					alert('Notification false');
 				}
 				else{
-					//$scope.messageDisplay = true;
-					deferred.resolve(fasle);
+					$scope.messageDisplay = true;
+					alert('Notification true');
 				}
-				
+				//alert('Done All '+allMessages[0].notify_msg);
+				$scope.loading = false;
 			},errorHandlerQuery); 
 			
 		},errorHandlerTransaction,nullHandler);

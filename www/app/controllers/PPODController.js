@@ -736,15 +736,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
-		var promise = PPODService.getAllNotification($scope,sharedProperties);
-		promise.then(function(result) {
-            $scope.loading = false;
-			$scope.messageDisplay = true;
-			$scope.allMessages = myCache.get('allMessages');
-        }, function(reason) {
-            $scope.loading = false;
-            $scope.messageDisplay = false;
-        });
+		PPODService.getAllNotification($scope,sharedProperties);
     };
 	$scope.fnViewDetails = function(item){
 		var pubobj = new Object();
