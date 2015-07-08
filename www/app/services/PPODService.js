@@ -599,10 +599,16 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				myCache.put('allMessages',tempData);
 				$scope.allMessages = tempData;
 				alert('Length '+tempData.length);
-				if(tempData == null || tempData.length == 0)
+				if(tempData == null || tempData.length == 0){
 					$scope.messageDisplay = false;
-				else
+					alert('Notification false');
+				}
+				else{
 					$scope.messageDisplay = true;
+					alert('Notification true');
+				}
+				alert('Done All '+allMessages[0].notify_msg);
+				
 			},errorHandlerQuery); 
 			
 		},errorHandlerTransaction,nullHandler);
