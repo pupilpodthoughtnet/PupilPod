@@ -6,7 +6,7 @@
 app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$cordovaPush,sharedProperties,myCache,$ionicPlatform,$ionicSideMenuDelegate,$state,$timeout,$cordovaDialogs,$cordovaSQLite){
 	$scope.contactname = "ThoughtNet Technologies (India) Pvt. Ltd";
 	$scope.loginTrue = sharedProperties.getIsLogin();
-	
+	$ionicSideMenuDelegate.canDragContent(false);
 	$scope.student_name = sharedProperties.getStudentSelectedName();
 	
 	$scope.toggleLeft = function() {
@@ -296,10 +296,10 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
 	$scope.$on('$ionicView.enter', function(){
+		$ionicSideMenuDelegate.canDragContent(false);
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -324,6 +324,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
+		$ionicSideMenuDelegate.canDragContent(false);
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
@@ -342,6 +343,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		//var main_students_guid = myCache.get('main_students_guid');		
 		var cache = myCache.get('studentName');
 		if(cache){
+			$ionicSideMenuDelegate.canDragContent(true);
 			if(sharedProperties.getIsLogin() == false){
 				if(myCache.get('main_students_guid') != sharedProperties.getStudentSelectedGuid())
 				{
@@ -372,6 +374,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		}
 		else{
 			if(sharedProperties.getIsLogin() == false){
+				$ionicSideMenuDelegate.canDragContent(true);
 				PPODService.getStudentDetails($scope,sharedProperties);
 			}
 			else{
