@@ -414,7 +414,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		
 		alert('NG '+notificationDetails.notify_guid);
 		alert('ND '+notificationDetails.notify_date);
-		alert('NT '+notificationDetails.notify_type)
+		alert('NT '+notificationDetails.notify_type);
 		alert('NM '+notificationDetails.notify_msg);
 		alert('EG '+notificationDetails.entity_guid);
 		
