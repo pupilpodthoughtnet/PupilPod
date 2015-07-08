@@ -753,7 +753,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
             alert(reason);
         }); */
 		$scope.allMessages = myCache.get('allMessages');
-		if($scope.allMessages.length == 0){
+		if($scope.allMessages.length > 0){
 			alert('Exist');
 			$scope.loading = false;
 			$scope.messageDisplay = true;
