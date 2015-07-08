@@ -725,10 +725,11 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
     }
 });
 
-app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
+app.controller('NotificationController',function($scope,sharedProperties,$state,$ionicSideMenuDelegate,myCache){
 	$scope.messageDisplay = false;
 	$scope.allMessages = new Array();
     $scope.$on('$ionicView.enter', function(){
+		alert('In View');
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
@@ -736,6 +737,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
+		alert('Init');
 		$scope.allMessages = myCache.get('allMessages');
 		if($scope.allMessages.length > 0){
 			alert('Exist');
