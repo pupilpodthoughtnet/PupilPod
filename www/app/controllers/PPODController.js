@@ -380,13 +380,24 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			}
 		}
     };
-
+	
+	$scope.fnViewDetails = function(item){
+		var pubobj = new Object();
+        pubobj['pG']  = item.entity_guid;
+        pubobj['piG'] = item.notify_guid;
+		sharedProperties.setPublicationRow(pubobj);
+		$state.go('eventmenu.publication_details');
+	};
+	
     $scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.goToView = function(){
+		alert('View Called');
+	};
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$state){
