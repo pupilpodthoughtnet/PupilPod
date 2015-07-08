@@ -596,14 +596,15 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					tempData.push(row);
 					alert('Notification Got '+row.notify_msg);
 				}
+				myCache.put('allMessages',tempData);
+				$scope.allMessages = tempData;
+				alert('Length '+tempData.length);
+				if(tempData == null || tempData.length == 0)
+					$scope.messageDisplay = false;
+				else
+					$scope.messageDisplay = true;
 			},errorHandlerQuery); 
-			myCache.put('allMessages',tempData);
-			$scope.allMessages = tempData;
-			alert('Length '+tempData.length);
-			if(tempData == null || tempData.length == 0)
-				$scope.messageDisplay = false;
-			else
-				$scope.messageDisplay = true;
+			
 		},errorHandlerTransaction,nullHandler);
 	};
 	
