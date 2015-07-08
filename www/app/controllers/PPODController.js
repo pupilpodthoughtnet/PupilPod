@@ -707,12 +707,12 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
     }
 });
 
-app.controller('NotificationController',function($scope,PPODService,sharedProperties){
+app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state){
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
-			alert('Notification View');
 			$ionicSideMenuDelegate.toggleLeft();
 		}
+		alert('Notification View');
 		$scope.spinning = true;
 		$scope.fnInit();
 	});
@@ -724,6 +724,7 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
         pubobj['pG']  = item.entity_guid;
         pubobj['piG'] = item.notify_guid;
 		sharedProperties.setPublicationRow(pubobj);
-        $location.path("/eventmenu/publication_details");
+		$state.go('eventmenu.publication_details');
+        //$location.path("/eventmenu/publication_details");
 	}
 });
