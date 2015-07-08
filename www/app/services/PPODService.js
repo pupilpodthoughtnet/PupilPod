@@ -128,7 +128,10 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						{
 							for (var i = 0; i < resultT2.rows.length; i++) {
 								var row = resultT2.rows.item(i);
-								if(i < 2){
+								/* if(i < 2){
+									tempData.push(row);
+								} */
+								if((i-(resultT2.rows.length)) < 3){
 									tempData.push(row);
 								}
 								tempData1.push(row);
@@ -572,8 +575,32 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
         return deferred.promise;
     };
 	
-	this.getAllNotification = function($scope,sharedProperties){
-		
+	this.getAllNotification = function($scope){
+		if($scope.db == null || $scope.db == ''){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
+		$scope.db.transaction(function(transaction) {
+			var tempData = new Array();
+			var tempData1 = new Array();
+			transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
+			{
+				for (var i = 0; i < resultT2.rows.length; i++) {
+					var row = resultT2.rows.item(i);
+					if((i-(resultT2.rows.length)) < 3){
+						tempData.push(row);
+					}
+					tempData1.push(row);
+				}
+			},errorHandlerQuery); 
+			myCache.put('messageDashboard',tempData);
+			myCache.put('allMessages',tempData1);
+			},errorHandlerTransaction,nullHandler);
 	};
 });
 

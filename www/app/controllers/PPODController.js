@@ -87,6 +87,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			var msgObj = notification.message;
 			var objJSON = eval("(function(){return " + msgObj + ";})()");
 			PPODService.AddNotificationToDB($scope,objJSON);
+			PPODService.getAllNotification($scope);
 			if(objJSON.notify_type == 'publication'){
 				var pubobj = new Object();
 				pubobj['pG']  = objJSON.entity_guid;
