@@ -86,14 +86,8 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
           // this is the actual push notification. its format depends on the data model from the push server
 			var msgObj = notification.message;
 			var objJSON = eval("(function(){return " + msgObj + ";})()");
-			//PPODService.AddNotificationToDB($scope,notification);
-			$cordovaDialogs.alert(notification.message, "Push Notification Received");
-			alert('NG '+objJSON.notify_guid);
-			alert('ND '+objJSON.notify_date);
-			alert('NT '+objJSON.notify_type);
-			alert('NM '+objJSON.notify_msg);
-			alert('EG '+objJSON.entity_guid);
-			alert('message = ' + objJSON.message + ' msgCount = ' + objJSON.notify_guid);
+			PPODService.AddNotificationToDB($scope,objJSON);
+			$cordovaDialogs.alert(objJSON.message, "Push Notification Received");
 			break;
 
         case 'error':
