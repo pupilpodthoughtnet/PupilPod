@@ -607,7 +607,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					$scope.messageDisplay = true;
 					alert('Notification true');
 				}
-				alert('Done All '+allMessages[0].notify_msg);
+				//alert('Done All '+allMessages[0].notify_msg);
 				
 			},errorHandlerQuery); 
 			
