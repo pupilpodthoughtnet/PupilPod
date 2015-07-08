@@ -1,3 +1,4 @@
+<ion-nav-view>
 <ion-view view-title="PupilPod">
 	<ion-content>
 		<ion-refresher on-refresh="doRefresh()"></ion-refresher>
@@ -5,7 +6,8 @@
 			<div class="card">
 				<div class="item item-divider yellowbar">
 					<div class="row" style="padding:0px;">
-					<div style="width:100%">Messages</div><i style="float:right" class="icon ion-chevron-right"></i>
+					<div style="width:100%">Messages</div>
+					<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
 					</div>
 				</div>
 				<div class="item item-text-wrap" style="padding:0px;">
@@ -22,20 +24,22 @@
 			<div class="card">
 				<div class="item item-divider pinkbar">
 					<div class="row" style="padding:0px;">
-					<div style="width:100%">Attendance</div><i style="float:right" class="icon ion-chevron-right"></i>
+					<div style="width:100%">Attendance</div>
+					<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
 					</div>
 				</div>
 				<div class="item item-text-wrap" style="padding:0px;">
 					<div style="background-color:#488ECF;padding-bottom:10px;text-align:center;">
 						<div style="color:#FFFFFF;" class="text-center"><small>Attendance Percentage</small></div>
-						<div class="h1" style="color:#FFFFFF;margin:0px;">{{attendanceDashboard}}%</div>
+						<div class="h1" style="color:#FFFFFF;margin:0px;">{{attendanceDashboard}}</div>
 					</div>
 				</div>
 			</div>
 			<div class="card">
 				<div class="item item-divider greenbar">
 					<div class="row" style="padding:0px;">
-					<div style="width:100%">Calender</div><i style="float:right" class="icon ion-chevron-right"></i>
+					<div style="width:100%">Calender Events</div>
+					<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
 					</div>
 				</div>
 				<div class="item item-text-wrap" style="padding:0px;">
@@ -55,7 +59,7 @@
 					</div>
 				</div>
 			</div>	
-			<div class="card">
+			<!--<div class="card">
 				<div class="item item-divider yellowbar">
 					<div class="row" style="padding:0px;">
 					<div style="width:100%">Fees</div><i style="float:right" class="icon ion-chevron-right"></i>
@@ -67,11 +71,12 @@
 						<div class="h1" style="color:#FFFFFF;margin:0px;">&#x20B9;{{feesDashboard.fees_amount}}</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div class="card">
-				<div class="item item-divider pinkbar">
+				<div class="item item-divider yellowbar">
 					<div class="row" style="padding:0px;">
-					<div style="width:100%">Program</div><i style="float:right" class="icon ion-chevron-right"></i>
+					<div style="width:100%">Program</div>
+					<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
 					</div>
 				</div>
 				<div class="item item-text-wrap">
@@ -82,9 +87,10 @@
 				</div>
 			</div>
 			<div class="card">
-				<div class="item item-divider greenbar">
+				<div class="item item-divider pinkbar">
 					<div class="row" style="padding:0px;">
-					<div style="width:100%">Profile</div><i style="float:right" class="icon ion-chevron-right"></i>
+					<div style="width:100%">Profile</div>
+					<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
 					</div>
 				</div>
 				<div class="item item-text-wrap">
@@ -105,3 +111,4 @@
 		</div>
 	</ion-content>
 </ion-view>
+<ion-nav-view>

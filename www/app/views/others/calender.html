@@ -1,7 +1,7 @@
 <ion-view view-title="Pupilpod">
     <ion-content>
 			<div class="item item-divider">
-				Calendar
+				Calendar Events
 			</div>
 			<div class="card">
 				<div class="row row-center">
@@ -22,8 +22,8 @@
 					<div class="row row-center">
 						<!--<div class="col col-20 text-center">{{event.date}}</div>-->
 						<div class="calenderDateCell">
-							<div class="calenderMonth">Friday</div>
-							<div class="calenderDate">25</div>
+							<div class="calenderMonth">{{event.dayName}}</div>
+							<div class="calenderDate">{{event.dayNumber}}</div>
 						</div>
 						<div class="col col-70 text-center">{{event.name}}</div>
 						<div class="col col-10">

@@ -705,6 +705,15 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
             alert(reason);
         });
     }
+	$scope.downloadAttachment = function(url){
+		handleDocumentWithURL(
+		  function() {console.log('success');},
+		  function(error) {
+			if(error == 53) {
+			  console.log('No app that handles this file type.');
+			}
+		  },url);
+    }
 });
 
 app.controller('NotificationController',function($scope,PPODService,sharedProperties,$state){

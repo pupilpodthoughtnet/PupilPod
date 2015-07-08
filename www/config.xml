@@ -32,6 +32,7 @@
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
 	<gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
 	<gap:plugin name="com.badrit.backbutton" version="0.1.0" />
+	<gap:plugin name="ch.ti8m.documenthandler" version="0.2.1" />
 	
 	<icon src="icon.png" />
     <icon gap:density="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />

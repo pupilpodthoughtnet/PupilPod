@@ -1,44 +1,30 @@
-<ion-view view-title="Pupilpod" ng-controller="PublicationController" ng-init="fnInit()">
-    <ion-content class="padding">
-        <div ng-show="!loading">
-
-            <H4><B><span ng-bind="publication_details.name" /></B></h4>
-
-            <div class="card">
+<ion-view view-title="Pupilpod">
+	<ion-content>
+		<div ng-show="!loading">
+			<div class="item item-divider item-text-wrap" ng-bind="publication_details.name"></div>
+			<div class="card" ng-if="publication_details.description.length > 0">
                 <div class="item item-text-wrap">
                     <span ng-bind-html="publication_details.description" />
                 </div>
             </div>
-
-            <div ng-show="loading" class="app-content-loading">
-                <i class="fa fa-circle-o-notch fa-spin"></i>
+			<div ng-if="publication_attachments.length > 0" style="margin-left: 30px;">
+                <small>Please click on the attachments to read further</small>
             </div>
-
-
-            <div ng-if="publication_attachments.length>0" style="margin-left: 30px;">
-                <font color="#0D0C5F"><b>Please click on the attachment below to read the document.</b></font>
-            </div>
-            <div ng-if="publication_attachments.length<=0" style="margin-left: 30px;">
-                <font color="#7F0707"><b>No documents are attached to this publication.</b></font>
-            </div>
-
-
-            <ul class="list">
-                <li class="item" ng-repeat="item in publication_attachments" style="width: 800px;">
-                    <a href="{{item.attach_path}} " target="_new">{{item.attach_fileName}}</a>
-                </li>
-            </ul>
-
-
-        </div>
-        <div ng-show="loading" style="margin-top: 150px;">
-            <div style="text-align: center;  margin-bottom: 40px !important;">
-                <ion-spinner icon="ripple" class="spinner-assertive"></ion-spinner>
-            </div>
-        </div>
+			<div class="card" ng-repeat="item in publication_attachments">
+				<div class="row row-center">
+					<div class="col col-80">{{item.attach_fileName}}</div>
+					<div class="col col-20">
+						<button ng-click="downloadAttachment(item.attach_path)" class="button button-clear button-dark icon icon-right ion-paperclip" style="width:100%;"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+       <div ng-show="loading">
+			<div style="text-align:center;">
+				<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+			</div>
+		</div>
     </ion-content>
-
-
 </ion-view>
 
 

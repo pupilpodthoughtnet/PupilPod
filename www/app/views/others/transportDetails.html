@@ -1,17 +1,20 @@
 <ion-view view-title="Pupilpod" >
 	<ion-content>
 		<div ng-show="!loading">
-				<div class="card">
-					<div class="item item-text-wrap">
-						Transport
-					</div>
+			<div class="item item-divider">
+				Transport details
+			</div>
+			<div class="card" ng-repeat="row in routeDetails">
+				<div class="row row-center">
+					<div class="col col-50" style="border-right:solid 2px #EFEFEF;">{{row.label}}</div>
+					<div class="col col-50">{{row.value}}</div>
 				</div>
+			</div>
+		</div>	
+		<div ng-show="loading">
+			<div style="text-align:center;">
+				<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+			</div>
 		</div>
-		<div class="col">
-                <div class="row card" ng-repeat="row in routeDetails" >
-						<span  style="margin-right:20px;width:25%;font-weight:bold;" ng-bind="row.label">:</span>
-						<span  style="width:50%;" ng-bind="row.value" > </span> 
-               </div>
-		</div> 
 	</ion-content>
 </ion-view>	
