@@ -595,6 +595,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				for (var i = 0; i < resultT3.rows.length; i++) {
 					var row = resultT3.rows.item(i);
 					tempData.push(row);
+					alert('Notification Got '+row.notify_msg);
 				}
 			},errorHandlerQuery); 
 			myCache.put('allMessages',tempData);
