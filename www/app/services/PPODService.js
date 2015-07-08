@@ -131,7 +131,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 								/* if(i < 2){
 									tempData.push(row);
 								} */
-								if((i-(resultT2.rows.length)) < 3){
+								if(((resultT2.rows.length) - i) < 3){
 									tempData.push(row);
 								}
 								tempData1.push(row);
@@ -592,7 +592,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			{
 				for (var i = 0; i < resultT2.rows.length; i++) {
 					var row = resultT2.rows.item(i);
-					if((i-(resultT2.rows.length)) < 3){
+					if(((resultT2.rows.length) - i) < 3){
 						tempData.push(row);
 					}
 					tempData1.push(row);
