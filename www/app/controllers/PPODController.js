@@ -87,7 +87,16 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			var msgObj = notification.message;
 			var objJSON = eval("(function(){return " + msgObj + ";})()");
 			PPODService.AddNotificationToDB($scope,objJSON);
-			$cordovaDialogs.alert(objJSON.notify_msg, "Push Notification Received");
+			if(objJSON.notify_type == 'publication'){
+				var pubobj = new Object();
+				pubobj['pG']  = objJSON.entity_guid;
+				pubobj['piG'] = objJSON.notify_guid;
+				sharedProperties.setPublicationRow(pubobj);
+				$state.go('eventmenu.publication_details');
+			}
+			else{
+				$cordovaDialogs.alert(objJSON.notify_msg, "Push Notification Received");
+			}
 			break;
 
         case 'error':
@@ -721,7 +730,6 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		alert('Notification View');
 		$scope.spinning = true;
 		$scope.fnInit();
 	});
@@ -734,6 +742,5 @@ app.controller('NotificationController',function($scope,PPODService,sharedProper
         pubobj['piG'] = item.notify_guid;
 		sharedProperties.setPublicationRow(pubobj);
 		$state.go('eventmenu.publication_details');
-        //$location.path("/eventmenu/publication_details");
 	}
 });
