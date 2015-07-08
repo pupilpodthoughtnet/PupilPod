@@ -604,21 +604,18 @@ app.controller('transportDetails',function($scope,PPODService,$http,sharedProper
 });
 
 app.controller('CalenderController',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$location){
-	alert("in first if");	
-    var ref = "";
+	var ref = "";
     montharr=['January', 'February', 'March', 'April','May','June','July','August','September','October','November','December'];
 	if(sharedProperties.getMonth() =='' && sharedProperties.getYear() ==''){
 		var date = new Date();
 		var currentdate= date.getDate();
 		var currentmonth= date.getMonth();
 		var currentyear= date.getFullYear();
-		alert("in first if");
 	}
     else{
         var  currentmonth= sharedProperties.getMonth();
 		var currentyear= sharedProperties.getYear();
-		alert("in else");
-    }
+	}
     $scope.monthyear=(montharr[currentmonth]+ ' '+currentyear);
     $scope.month=currentmonth;
     $scope.year=currentyear;
@@ -707,4 +704,27 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
             alert(reason);
         });
     }
+});
+app.controller('NotificationController',function($scope,PPODService,sharedProperties){
+    $scope.$on('$ionicView.enter', function(){
+		if($ionicSideMenuDelegate.isOpenLeft()){
+			$ionicSideMenuDelegate.toggleLeft();
+		}
+		$scope.spinning = true;
+		$scope.fnInit();
+	});
+    $scope.fnInit = function(){
+		$scope.allMessages = myCache.get('allMessages');
+		if($scope.allMessages == null || $scope.allMessages.length == 0)
+			$scope.messageDisplay = false;
+		else
+			$scope.messageDisplay = true;
+    }
+	$scope.fnViewDetails = function(item){
+		var pubobj = new Object();
+        pubobj['pG']  = item.entity_guid;
+        pubobj['piG'] = item.notify_guid;
+		sharedProperties.setPublicationRow(pubobj);
+        $location.path("/eventmenu/publication_details");
+	}
 });

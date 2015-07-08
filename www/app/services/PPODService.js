@@ -412,8 +412,8 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			$scope.db = db;		
 		}
 		$scope.db.transaction(function(transaction) {
-			//var t_Date = Date();
-			//transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
+			var t_Date = Date();
+			transaction.executeSql('INSERT INTO tnet_notification_details(notify_guid,notify_date,notify_type,notify_msg,entity_guid) VALUES (?,?,?,?,?)',[notificationDetails.entity_instance_guid,t_Date, notificationDetails.notify_type, notificationDetails.notify_msg,notificationDetails.entity_guid],nullHandler,errorHandlerQuery);		
 		},errorHandlerTransaction,nullHandler);
 	};
 	
@@ -562,6 +562,32 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
         });
         return deferred.promise;
     };
+	
+	this.getAllNotification = function($scope){
+		if($scope.db == null || $scope.db == ''){
+			var shortName = 'tnet_pupilpod';
+			var version = '1.0';
+			var displayName = 'Tnet_Pupilpod';
+			var maxSize = 65535;
+			db = $window.openDatabase(shortName, version, displayName,maxSize);
+			db.transaction(createTable,errorHandlerTransaction,nullHandler);
+			$scope.db = db;		
+		}
+		$scope.db.transaction(function(transaction) {
+			var t_Date = Date();
+			var tempData = {};
+						transaction.executeSql("SELECT * FROM tnet_notification_details", [],function(transaction, resultT2)
+						{
+							for (var i = 0; i < resultT2.rows.length; i++) {
+								var row = resultT2.rows.item(i);
+								tempData.push(row);
+							}
+						},errorHandlerQuery); 
+						myCache.put('allMessages',tempData);
+		},errorHandlerTransaction,nullHandler);
+		
+	};
+	
 	
 });
 

@@ -201,6 +201,15 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
             }
         }
     })
+	.state('eventmenu.messages',{
+        url: "/messages",
+        views: {
+            'menuContent': {
+                templateUrl: 'app/views/others/messages.html',
+                controller: 'NotificationController'
+            }
+        }
+    })
 	.state('eventmenu.student_view', {
 		url: "/student_view",
 		views: {
