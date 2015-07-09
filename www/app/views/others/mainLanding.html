@@ -12,8 +12,8 @@
 				</div>
 				<div class="item item-text-wrap" style="padding:0px;">
 					<div class="card" ng-if="!messageDisplay">
-						<div class="text-center" style="padding:0px 5px;">You don't have any notifications to see.</div>
-						<p class="text-center"><small>-/-/-</small></p>
+						<div class="text-center" style="padding:0px 5px;">You don't have any messages.</div>
+						<!--<p class="text-center"><small>-/-/-</small></p>-->
 					</div>
 					<div class="card" ng-repeat="details in messageDashboard">
 						<div ng-click="fnViewDetails(details)" ng-if="details.notify_type == 'publication'">
