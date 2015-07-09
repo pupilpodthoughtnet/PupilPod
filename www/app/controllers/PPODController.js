@@ -743,12 +743,10 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
 
 app.controller('NotificationController',function($scope,sharedProperties,$state,$ionicSideMenuDelegate,myCache){
 	$scope.messageDisplay = true;
-	$scope.allMessages = new Array();
     $scope.$on('$ionicView.enter', function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.loading = true;
 		$scope.fnInit();
 	});
     $scope.fnInit = function(){
