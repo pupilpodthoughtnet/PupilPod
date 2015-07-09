@@ -296,6 +296,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 });
 
 app.controller('changeStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$state,$ionicSideMenuDelegate,$timeout){
+	$scope.ifNotLogin = true;
 	$scope.$on('$ionicView.enter', function(){
 		$ionicSideMenuDelegate.canDragContent(false);
 		if($ionicSideMenuDelegate.isOpenLeft()){
@@ -312,6 +313,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		}
 		if(sharedProperties.getIsLogin() == false){
 			$state.go('eventmenu.mainLanding');
+			$scope.ifNotLogin = false;
 		}
     };
 	$scope.doRefresh = function() {
