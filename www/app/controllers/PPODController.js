@@ -313,9 +313,6 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		if(sharedProperties.getIsLogin() == false){
 			$state.go('eventmenu.mainLanding');
 		}
-		else{
-			$state.go('eventmenu.login');
-		}
     };
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -755,13 +752,15 @@ app.controller('NotificationController',function($scope,sharedProperties,$state,
 	});
     $scope.fnInit = function(){
 		$scope.allMessages = myCache.get('allMessages');
-		if($scope.allMessages.length > 0){
+		if($scope.allMessages.length > 0 && $scope.allMessages != null && $scope.allMessages != undefined){
+			alert('Yes');
 			$scope.loading = false;
 			$scope.messageDisplay = true;
 		}
 		else{
+			alert('No');
 			$scope.loading = false;
-			$scope.messageDisplay = true;
+			$scope.messageDisplay = false;
 		}
     };
 	$scope.fnViewDetails = function(item){
