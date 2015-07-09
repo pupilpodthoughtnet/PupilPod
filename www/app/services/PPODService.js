@@ -4,7 +4,7 @@
 **/
 
 
-app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup,$cordovaSQLite,$q){    
+app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$cordovaPush,$rootScope,$state,myCache,$ionicPopup,$cordovaSQLite,$q,$cordovaDialogs){    
 	this.dbConnection = function($scope,sharedProperties){
 		var shortName = 'tnet_pupilpod';
 		var version = '1.0';
@@ -26,17 +26,17 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
     };
 	
     function errorHandler(error) {
-		alert("errorHandler Code : "+error.code+" Message "+error.message);
+		$cordovaDialogs.alert("errorHandler Code : "+error.code+" Message "+error.message, "Error");
 		return false;
     };
 	
 	function errorHandlerTransaction(error){
-		alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message);
+		$cordovaDialogs.alert("errorHandlerTransaction Code : "+error.code+" Message "+error.message, "Error");
 		return false;
 	};
 	
 	function errorHandlerQuery(error){
-		alert("errorHandlerQuery Code : "+error.code+" Message "+error.message);
+		$cordovaDialogs.alert("errorHandlerQuery Code : "+error.code+" Message "+error.message, "Error");
 		return false;
 	};
 	
@@ -50,7 +50,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 	
 	this.AddValueToDB = function($scope,field_key,field_value) { 
 		if (!$window.openDatabase) {
-			alert('Databases are not supported in this browser.');
+			$cordovaDialogs.alert('Databases is not supported in this browser.', "Error");
 			return;
 		}
 		if(field_key == 'reg_id')
@@ -93,7 +93,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					if(result.rows.length == 0){
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
-							alert('Error '+err);
+							$cordovaDialogs.alert(err, "Error");
 						});
 						//$state.go('eventmenu.login');
 					}
@@ -141,7 +141,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 						myCache.put('allMessages',tempData1);
 						$cordovaPush.register(androidConfig).then(function(resultPush) {
 						}, function(err) {
-							alert('Error '+err);
+							$cordovaDialogs.alert(err, "Error");
 						});
 						//$state.go('eventmenu.login');
 					}
@@ -149,7 +149,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				else{
 					$cordovaPush.register(androidConfig).then(function(resultPush) {
 					}, function(err) {
-						alert('Error '+err);
+						$cordovaDialogs.alert(err, "Error");
 					})
 				}
 				return false;
@@ -171,7 +171,6 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		var tempUrl = "http://"+$scope.login.instName+"/"+url;
 		$http.post(tempUrl, param).success(function(data, status, headers, config) {		
 			if(data.valid == 'VALID'){
-				//alert('Valid');
 				sharedProperties.setIsLogin(false);
 				sharedProperties.setInstName(data.instName);
 				sharedProperties.setUserName(data.userName);
@@ -195,14 +194,18 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			else{
 				$scope.instDis = false;
 				$scope.loading = false;
-				alert('Wrong User Name or Password, Please try again '+data.reason);
-				//$state.go('eventmenu.login');
+				if(data.user_guid == 'NOT_ENABLED'){
+					$cordovaDialogs.alert(data.reason, "Error");
+				}
+				else{
+					$cordovaDialogs.alert(data.reason, "Error");
+				}
 			}
 		})
 		.error(function(data, status, headers, config){
 			//$state.go('eventmenu.login');
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert('Something went wrong please try again', "Error");
 			return false;
 		});
     };
@@ -251,7 +254,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert('Something went wrong please try again', "Error");
 			return false;
 		});
 	};
@@ -270,16 +273,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.studentTestDetails = data.all_tests;
 				$scope.termName = data.term_name;
 				$scope.sectionName = data.section_name;
-				//alert('Valid Student Test Details');
 			}
 			else{
-				//alert('Invalid Student Test Details');
 				$scope.loading = false;
 			}
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert('Something went wrong please try again', "Error");
 			return false;
 		});
 	};
@@ -305,14 +306,14 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert('Something went wrong please try again', "Error");
 			return false;
 		});
 	};
 	
 	this.removeLocalEntry = function($scope,sharedProperties){
 		if (!$window.openDatabase) {
-			alert('Databases are not supported in this browser.');
+			$cordovaDialogs.alert('Databases are not supported in this browser.', "Error");
 			return;
 		}
 		if($scope.db == null || $scope.db == ''){
@@ -385,7 +386,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				})
 				.error(function(data, status, headers, config){
 					$scope.loading = false;
-					alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+					$cordovaDialogs.alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in', "Error");
 					return false;
 				});
 			}
@@ -407,7 +408,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				})
 				.error(function(data, status, headers, config){
 					$scope.loading = false;
-					alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+					$cordovaDialogs.alert('Something went wrong please try again', "Error");
 					return false;
 				});
 			}
@@ -449,7 +450,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert('Something went wrong please try again', "Error");
 			return false;
 		});
 	};
@@ -476,7 +477,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Ohh Snap, Something went wrong!');
+			$cordovaDialogs.alert('Ohh Snap, Something went wrong!', "Error");
 			return false;
 		});
 	};
@@ -504,7 +505,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert("Ohh Snap, Something went wrong!","Error");
 			return false;
 		});
 	};
@@ -531,7 +532,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 		})
 		.error(function(data, status, headers, config){
 			$scope.loading = false;
-			alert('Please give instance name correct,Wrong Instance Name. eg: xyz.pupilpod.in');
+			$cordovaDialogs.alert("Ohh Snap, Something went wrong!","Error");
 			return false;
 		});
 	};
