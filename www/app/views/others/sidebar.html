@@ -12,7 +12,7 @@
 	
 	<ion-side-menu side="left">
 		<ion-content>
-			<div style="background-color:#A1C735;">
+			<div style="background-color:#A1C735;" id="student_info">
 				<div class="row">
 					<img src="{{studentImage}}" alt="Image" style="height:50px;width:50px;color:white;border-radius:50%;"/>
 					<div class="h3" style="padding-left:5px;color:white;">{{student_name}}</div>
@@ -50,8 +50,9 @@
 					<a class="item" href="#/eventmenu/logout" ng-click="toggleLeft()"><i class="ion-power"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
 				</li>
             </ul>
-
-			<dropdown class="ng-isolate-scope" selected="student" property="name" list="students" placeholder="Change Student"></dropdown>
+			<div id="student_details">
+				<dropdown class="ng-isolate-scope" selected="student" property="name" list="students" placeholder="Change Student"></dropdown>
+			</div>
 			
 		</ion-content>
 	</ion-side-menu>

@@ -165,7 +165,7 @@ app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$lo
 				scope.isPlaceholder = false;
 				scope.selected = item;
 				scope.listVisible = false;
-				$location.hash('bottom');
+				$location.hash('student_info');
 				// call $anchorScroll()
 				$anchorScroll();
 			};
@@ -176,7 +176,7 @@ app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$lo
 
 			scope.show = function() {
 				scope.listVisible = true;
-				$location.hash('top');
+				$location.hash('student_details');
 				// call $anchorScroll()
 				$anchorScroll();
 			};
