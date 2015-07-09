@@ -285,7 +285,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 		}
 	});
 	$scope.$on('$ionicView.leave', function(){
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.doRefresh = function() {
 		$timeout( function() {
@@ -303,7 +303,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
@@ -311,6 +311,9 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		}
 		if(sharedProperties.getIsLogin() == false){
 			$state.go('eventmenu.mainLanding');
+		}
+		else{
+			$state.go('eventmenu.login');
 		}
     };
 	$scope.doRefresh = function() {
@@ -618,7 +621,6 @@ app.controller('AttendanceController',function($scope,PPODService,$http,$window,
 });
 
 app.controller('transportDetails',function($scope,PPODService,$http,sharedProperties,$ionicSideMenuDelegate){
-		$ionicSideMenuDelegate.canDragContent(false);
 		$scope.spinning = true;
 		$scope.$on('$ionicView.enter', function(){
 			$scope.fnInit();
