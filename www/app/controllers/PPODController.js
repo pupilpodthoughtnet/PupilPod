@@ -34,12 +34,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	
 	function bindEvents() {
 		$ionicPlatform.ready(function(){
-			if(sharedProperties.getIsLogin() == false){
-				$state.go('eventmenu.mainLanding');
-			}
-			else{
-				onDeviceReady();
-			}
+			onDeviceReady();
 		});
     };
 	
@@ -139,7 +134,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$state.go('eventmenu.change_student');
+		//$state.go('eventmenu.change_student');
 	}
 	
 	initialize();
@@ -151,7 +146,7 @@ app.run(function($rootScope) {
 	});	
 });
 
-app.directive("dropdown", function($rootScope,sharedProperties) {
+app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$location) {
 	return {
 		restrict: "E",
 		templateUrl: "app/directives/templates/dropdown.html",
@@ -170,6 +165,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 				scope.isPlaceholder = false;
 				scope.selected = item;
 				scope.listVisible = false;
+				$location.hash('bottom');
+				// call $anchorScroll()
+				$anchorScroll();
 			};
 
 			scope.isSelected = function(item) {
@@ -178,6 +176,9 @@ app.directive("dropdown", function($rootScope,sharedProperties) {
 
 			scope.show = function() {
 				scope.listVisible = true;
+				$location.hash('top');
+				// call $anchorScroll()
+				$anchorScroll();
 			};
 
 			$rootScope.$on("documentClicked", function(inner, target) {
@@ -760,6 +761,7 @@ app.controller('NotificationController',function($scope,sharedProperties,$state,
 		}
 		else{
 			$scope.loading = false;
+			$scope.messageDisplay = true;
 		}
     };
 	$scope.fnViewDetails = function(item){
