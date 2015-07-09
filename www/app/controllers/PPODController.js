@@ -146,7 +146,7 @@ app.run(function($rootScope) {
 	});	
 });
 
-app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$location,anchorSmoothScroll) {
+app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$location) {
 	return {
 		restrict: "E",
 		templateUrl: "app/directives/templates/dropdown.html",
@@ -167,8 +167,7 @@ app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$lo
 				scope.listVisible = false;
 				$location.hash('student_info');
 				// call $anchorScroll()
-				//$anchorScroll();
-				anchorSmoothScroll.scrollTo('student_info');
+				$anchorScroll();
 			};
 
 			scope.isSelected = function(item) {
@@ -179,8 +178,7 @@ app.directive("dropdown", function($rootScope,sharedProperties,$anchorScroll,$lo
 				scope.listVisible = true;
 				$location.hash('student_details');
 				// call $anchorScroll()
-				//$anchorScroll();
-				anchorSmoothScroll.scrollTo('student_details');
+				$anchorScroll();
 			};
 
 			$rootScope.$on("documentClicked", function(inner, target) {
