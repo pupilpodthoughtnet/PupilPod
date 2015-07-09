@@ -92,29 +92,27 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 
         case 'message':
 			
-          // this is the actual push notification. its format depends on the data model from the push server
 			var msgObj = notification.payload;
-			alert('Message '+notification.message);
+			/* alert('Message '+notification.message);
 			alert('notify_type '+msgObj.notify_type);
 			alert('entity_guid '+msgObj.entity_guid);
 			alert('notify_guid '+msgObj.notify_guid);
 			alert('notify_date '+msgObj.notify_date);
 			alert('notify_date '+msgObj.notify_msg);
 			alert(JSON.stringify(msgObj));
-			alert(JSON.stringify(notification));
-			/* var objJSON = eval("(function(){return " + msgObj + ";})()");
-			PPODService.AddNotificationToDB($scope,objJSON);
+			alert(JSON.stringify(notification)); */
+			PPODService.AddNotificationToDB($scope,msgObj);
 			PPODService.getAllNotification($scope);
-			if(objJSON.notify_type == 'publication'){
+			if(msgObj.notify_type == 'publication'){
 				var pubobj = new Object();
-				pubobj['pG']  = objJSON.entity_guid;
-				pubobj['piG'] = objJSON.notify_guid;
+				pubobj['pG']  = msgObj.entity_guid;
+				pubobj['piG'] = msgObj.notify_guid;
 				sharedProperties.setPublicationRow(pubobj);
 				$state.go('eventmenu.publication_details');
 			}
-			else{ */
+			else{ 
 				$cordovaDialogs.alert(notification.message, "Push Notification Received");
-			//}
+			}
 			break;
 
         case 'error':
