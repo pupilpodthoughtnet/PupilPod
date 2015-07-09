@@ -93,11 +93,14 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
         case 'message':
 			
           // this is the actual push notification. its format depends on the data model from the push server
-			//var msgObj = notification.message;
+			var msgObj = notification.payload;
 			alert('Message '+notification.message);
-			alert('notify_type '+notification.notify_type);
-			alert('entity_guid '+notification.entity_guid);
-			alert('notify_guid '+notification.notify_guid);
+			alert('notify_type '+msgObj.notify_type);
+			alert('entity_guid '+msgObj.entity_guid);
+			alert('notify_guid '+msgObj.notify_guid);
+			alert('notify_date '+msgObj.notify_date);
+			alert('notify_date '+msgObj.notify_msg);
+			alert(JSON.stringify(msgObj));
 			alert(JSON.stringify(notification));
 			/* var objJSON = eval("(function(){return " + msgObj + ";})()");
 			PPODService.AddNotificationToDB($scope,objJSON);
