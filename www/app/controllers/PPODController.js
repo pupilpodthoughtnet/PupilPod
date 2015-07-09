@@ -134,7 +134,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		//$state.go('eventmenu.change_student');
+		$state.go('eventmenu.change_student');
 	}
 	
 	initialize();
