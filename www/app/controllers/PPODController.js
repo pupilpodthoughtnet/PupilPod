@@ -225,7 +225,8 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 			return false;
 		}
 		else{
-			$scope.loading = true;		
+			$scope.loading = true;
+			$ionicSideMenuDelegate.canDragContent(false);
 			var regkey = sharedProperties.getRegKey();
 			var usernameTemp = sharedProperties.getUserName();
 			var passwordTemp = sharedProperties.getPassWord();
@@ -242,6 +243,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 				PPODService.loginFunction($scope,sharedProperties);
 			}
 			else{
+				$ionicSideMenuDelegate.canDragContent(false);
 				$scope.loading = false;
 			}
 		}
@@ -498,7 +500,6 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-		$ionicSideMenuDelegate.canDragContent(true);
 		$scope.spinning = false;
     });
 	$scope.fnInit = function(){
@@ -521,6 +522,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 				if($ionicSideMenuDelegate.isOpenLeft()){
 					$ionicSideMenuDelegate.toggleLeft();
 				}
+				$ionicSideMenuDelegate.canDragContent(true);
 				$ionicHistory.goBack();
 				return false;
 			}
