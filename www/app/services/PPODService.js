@@ -87,7 +87,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			transaction.executeSql("SELECT * FROM tnet_login_details WHERE field_key = ? ", ['reg_id'],function(transaction, result)
 			{
 				var androidConfig = {
-					"senderID": "74320630987",
+					"senderID": "730178859471",
 				};
 				if (result != null && result.rows != null) {
 					if(result.rows.length == 0){
