@@ -93,14 +93,6 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
         case 'message':
 			
 			var msgObj = notification.payload;
-			/* alert('Message '+notification.message);
-			alert('notify_type '+msgObj.notify_type);
-			alert('entity_guid '+msgObj.entity_guid);
-			alert('notify_guid '+msgObj.notify_guid);
-			alert('notify_date '+msgObj.notify_date);
-			alert('notify_date '+msgObj.notify_msg);
-			alert(JSON.stringify(msgObj));
-			alert(JSON.stringify(notification)); */
 			PPODService.AddNotificationToDB($scope,msgObj);
 			PPODService.getAllNotification($scope);
 			if(msgObj.notify_type == 'publication'){
@@ -116,13 +108,11 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			break;
 
         case 'error':
-          //alert('GCM error = ' + notification.msg);
-		  $cordovaDialogs.alert(notification.msg, "Error")
+          $cordovaDialogs.alert(notification.msg, "Error")
           break;
 
         default:
 			$cordovaDialogs.alert("An unknown GCM event has occurred", "Event")
-			//alert('An unknown GCM event has occurred');
 			break;
       }
     });
@@ -276,17 +266,17 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		$scope.login.user_guid = sharedProperties.getUserGuid();
 		if($scope.login.instName == "" || $scope.login.instName == null){
 			$scope.loading = false;
-			alert('Please enter Instance Name, Instance Name field can not be empty');
+			$cordovaDialogs.alert("Please enter Instance Name, Instance Name field can not be empty", "Alert");
 			return false;
 		}
 		else if($scope.login.userName == "" || $scope.login.userName == null){
 			$scope.loading = false;
-			alert('Please enter User Name, User Name/id field can not be empty');
+			$cordovaDialogs.alert("Please enter User Name, User Name/id field can not be empty", "Alert");
 			return false;
 		}
 		else if($scope.login.password == "" || $scope.login.password == null){
 			$scope.loading = false;
-			alert('Please enter password, password field can not be empty');
+			$cordovaDialogs.alert("Please enter password, password field can not be empty", "Alert");
 			return false;
 		}
 		PPODService.loginFunction($scope,sharedProperties);	  
@@ -732,7 +722,7 @@ app.controller('PublicationController',function($scope,$window,PPODService,share
 
         }, function(reason) {
             $scope.loading = false;
-            alert(reason);
+			$cordovaDialogs.alert(reason, "Error");
         });
     }
     $scope.fnViewDetails = function(row){
@@ -750,7 +740,7 @@ app.controller('PublicationDetailController',function($scope,PPODService,sharedP
             $scope.publication_attachments = result.publication_attachments;
         }, function(reason) {
             $scope.loading = false;
-            alert(reason);
+            $cordovaDialogs.alert(reason, "Error");
         });
     }
 	$scope.downloadAttachment = function(url){
@@ -777,12 +767,10 @@ app.controller('NotificationController',function($scope,sharedProperties,$state,
     $scope.fnInit = function(){
 		$scope.allMessages = myCache.get('allMessages');
 		if($scope.allMessages.length > 0 && $scope.allMessages != null && $scope.allMessages != undefined){
-			alert('Yes');
 			$scope.loading = false;
 			$scope.messageDisplay = true;
 		}
 		else{
-			alert('No');
 			$scope.loading = false;
 			$scope.messageDisplay = false;
 		}
