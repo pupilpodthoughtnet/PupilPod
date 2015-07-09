@@ -24,6 +24,19 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 	};
 	
 	function initialize() {
+		var tempArr = new Array();
+		myCache.put('studentDetails', tempArr);
+		myCache.put('studentName', tempArr);
+		myCache.put('studentImage', tempArr);
+		myCache.put('main_students_guid', tempArr);
+		myCache.put('programDashboard',tempArr);
+		myCache.put('cal_of_eventDashboard',tempArr);
+		myCache.put('attendanceDashboard',tempArr);
+		myCache.put('feesDashboard',tempArr);
+		myCache.put('messageDashboard',tempArr);
+		myCache.put('allMessages',tempArr);
+		myCache.put('students', tempArr);
+		myCache.put('main_students_guid', tempArr);
 		$scope.db = null;
         bindEvents();
     };
