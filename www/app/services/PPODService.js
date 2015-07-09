@@ -195,7 +195,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.instDis = false;
 				$scope.loading = false;
 				if(data.user_guid == 'NOT_ENABLED'){
-					$cordovaDialogs.alert(data.reason, "Error");
+					$cordovaDialogs.alert(data.reason, "Alert");
 				}
 				else{
 					$cordovaDialogs.alert(data.reason, "Error");

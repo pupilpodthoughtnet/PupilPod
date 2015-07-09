@@ -207,7 +207,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		}
 	});
 	$scope.$on('$ionicView.leave', function(){
-		$ionicSideMenuDelegate.canDragContent(true);
+		//$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.login = {
 		instName: "",
