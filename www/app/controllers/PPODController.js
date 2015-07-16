@@ -54,6 +54,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 		if(!args.status){
 			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
+			$scope.menuList = myCache.get('menuList');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
 			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 		}
