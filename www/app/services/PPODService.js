@@ -240,6 +240,7 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 					$scope.calenderDisplay = true;
 				$scope.attendanceDashboard = data.attendance_details;
 				$scope.feesDashboard = data.fees_details;
+				$scope.menuList = myCache.get('menuList');
 				myCache.put('studentDetails', data.all_other);
 				myCache.put('studentName', data.name);
 				myCache.put('studentImage', data.photo);
