@@ -20,36 +20,58 @@
 				</div>	
 			</div>
 			<ul class="list">
-				<li>
-					<a class="item" href="#/eventmenu/mainLanding" ng-click="toggleLeft()"><i class="icon ion-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
-				</li>
-				<li>
-					<a class="item" href="#/eventmenu/exam_details" ng-click="toggleLeft()"><i class="icon ion-clipboard"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examination</a>
-				</li>
-				<li>
-					<a class="item" href="#/eventmenu/attendance" ng-click="toggleLeft()"><i class="ion-compose"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attendance</a>
-				</li>
-				<li>
-					<a class="item" ng-click="toggleLeft()" href="#/eventmenu/calender"><i class="ion-android-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calender</a>
-				</li>
-				<!--<li>
-					<a class="item" ng-click="toggleLeft()" href="#/eventmenu/fees"><i class="icon ion-card"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fees</a>
-				</li>-->
-				<li>
-					<a class="item" ng-click="toggleLeft()" href="#/eventmenu/messages"><i class="ion-chatbubble"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Messages</a>
-				</li>
-				<li>
-                    <a class="item" ng-click="toggleLeft()" href="#/eventmenu/publications"><i class="ion-document-text"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Publications</a>
-                </li>
-				<li>
-					<a class="item" href="#/eventmenu/transportDetails" ng-click="toggleLeft()"><i class="ion-model-s"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transport</a>
-				</li>
-				<!--<li>
-					<a class="item" href="#/eventmenu/user_feedback" ng-click="toggleLeft()"><i class="ion-social-twitch"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Feedback</a>
-				</li>-->
-				<li>
-					<a class="item" href="#/eventmenu/logout" ng-click="toggleLeft()"><i class="ion-power"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
-				</li>
+				<div ng-repeat="menu in menuList">
+					<div ng-switch on="menu">
+						<div ng-switch-when="menu_mainLanding">
+							<li>
+								<a class="item" href="#/eventmenu/mainLanding" ng-click="toggleLeft()"><i class="icon ion-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_exam_details">
+							<li>
+								<a class="item" href="#/eventmenu/exam_details" ng-click="toggleLeft()"><i class="icon ion-clipboard"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examination</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_attendance">
+							<li>
+								<a class="item" href="#/eventmenu/attendance" ng-click="toggleLeft()"><i class="ion-compose"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attendance</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_calender">
+							<li>
+								<a class="item" ng-click="toggleLeft()" href="#/eventmenu/calender"><i class="ion-android-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Calender</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_fees">
+							<li>
+								<a class="item" ng-click="toggleLeft()" href="#/eventmenu/fees"><i class="icon ion-card"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fees</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_messages">
+							<li>
+								<a class="item" ng-click="toggleLeft()" href="#/eventmenu/messages"><i class="ion-chatbubble"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Messages</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_publications">
+							<li>
+								<a class="item" ng-click="toggleLeft()" href="#/eventmenu/publications"><i class="ion-document-text"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Publications</a>
+							</li>
+						</div>
+						<div ng-switch-when="menu_transportDetails">
+							<li>
+								<a class="item" href="#/eventmenu/transportDetails" ng-click="toggleLeft()"><i class="ion-model-s"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transport</a>
+							</li>
+						</div>
+						<!--<li>
+							<a class="item" href="#/eventmenu/user_feedback" ng-click="toggleLeft()"><i class="ion-social-twitch"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Feedback</a>
+						</li>-->
+						<div ng-switch-when="menu_logout">
+							<li>
+								<a class="item" href="#/eventmenu/logout" ng-click="toggleLeft()"><i class="ion-power"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
+							</li>
+						</div>
+					</div>
+				</div>
             </ul>
 				<dropdown class="ng-isolate-scope" selected="student" property="name" list="students" placeholder="Change Student"></dropdown>
 			<div id="student_details"></div>
