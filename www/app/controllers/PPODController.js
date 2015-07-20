@@ -286,7 +286,7 @@ app.controller('homeController',function($scope,PPODService,$ionicSideMenuDelega
 		}
 	});
 	$scope.$on('$ionicView.leave', function(){
-		//$ionicSideMenuDelegate.canDragContent(true);
+		$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.doRefresh = function() {
 		$timeout( function() {
@@ -305,7 +305,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
-		//$ionicSideMenuDelegate.canDragContent(true);
+		$ionicSideMenuDelegate.canDragContent(true);
     });
 	$scope.fnInit = function(){
 		if($ionicSideMenuDelegate.isOpenLeft()){
@@ -328,7 +328,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout,$state){
 	$scope.loading = true;
 	$scope.$on('$ionicView.enter', function(){
-		$ionicSideMenuDelegate.canDragContent(false);
+		//$ionicSideMenuDelegate.canDragContent(false);
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
