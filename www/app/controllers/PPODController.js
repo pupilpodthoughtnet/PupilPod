@@ -499,7 +499,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.spinning = true;
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		$scope.spinning = false;
@@ -530,6 +530,7 @@ app.controller('logoutController',function($scope,PPODService,sharedProperties,$
 			}
 		});
 	};
+	$scope.fnInit();
 });
 
 app.controller('studentViewController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate,$ionicHistory,$ionicPopup){
@@ -539,7 +540,7 @@ app.controller('studentViewController',function($scope,PPODService,sharedPropert
 			$ionicSideMenuDelegate.toggleLeft();
 		}
 		$scope.spinning = true;
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		
@@ -556,6 +557,7 @@ app.controller('studentViewController',function($scope,PPODService,sharedPropert
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.fnInit();
 });
 
 app.controller('FeedbackController',function($scope,PPODService,$http,$window,$document,sharedProperties){
@@ -752,7 +754,7 @@ app.controller('NotificationController',function($scope,sharedProperties,$state,
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
     $scope.fnInit = function(){
 		$scope.allMessages = myCache.get('allMessages');
@@ -772,4 +774,5 @@ app.controller('NotificationController',function($scope,sharedProperties,$state,
 		sharedProperties.setPublicationRow(pubobj);
 		$state.go('eventmenu.publication_details');
 	};
+	$scope.fnInit();
 });
