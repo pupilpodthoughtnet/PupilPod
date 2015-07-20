@@ -199,7 +199,6 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 	$scope.$on('$ionicView.enter', function(){
 		$scope.loading = true;
 		$ionicSideMenuDelegate.canDragContent(false);
-		$scope.fnInit();
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
@@ -275,6 +274,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.fnInit();
 });
 
 
@@ -302,7 +302,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		//$ionicSideMenuDelegate.canDragContent(true);
@@ -322,6 +322,7 @@ app.controller('changeStudent',function($scope,PPODService,$http,$window,$docume
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.fnInit();
 });
 
 app.controller('mainController',function($scope,PPODService,$http,$window,$document,sharedProperties,myCache,$ionicSideMenuDelegate,$timeout,$state){
@@ -336,7 +337,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 			$scope.$emit('loginStatus', param);
 		}
 		$scope.loading = true;
-		$scope.fnInit();
+		//$scope.fnInit();
 		
 	});
 	$scope.$on('$ionicView.leave', function(){
@@ -404,6 +405,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 	$scope.goToView = function(stateUrl){
 		$state.go(stateUrl);
 	};
+	$scope.fnInit();
 });
 
 app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$document,sharedProperties,$ionicSideMenuDelegate,$timeout,$state){
@@ -411,7 +413,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		if(sharedProperties.getIsLogin() == false){
@@ -429,6 +431,7 @@ app.controller('gettingAllTests',function($scope,PPODService,$http,$window,$docu
 		var param = {test_ins_guid: tig};
 		$state.go(path,param);
 	};
+	$scope.fnInit();
 });
 
 app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window,$document,sharedProperties,$stateParams,$ionicSideMenuDelegate,$timeout){
@@ -437,7 +440,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
-		$scope.fnInit();
+		//$scope.fnInit();
 	});
 	$scope.fnInit = function(){
 		if(sharedProperties.getIsLogin() == false){
@@ -451,6 +454,7 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.fnInit();
 });
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){

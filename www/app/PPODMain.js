@@ -41,13 +41,11 @@ app.config(function ($compileProvider) {
 app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('eventmenu', {
-		cache: false,
 		url: "/eventmenu",
 		abstract: true,
 		templateUrl: 'app/views/others/sidebar.html'
     })
 	.state('eventmenu.home', {
-		cache: false,
 		url: "/home",
 		views: {
 			'menuContent' :{
@@ -57,7 +55,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.login', {
-		cache: false,
 		url: "/login",
 		views: {
 			'menuContent' :{
@@ -77,7 +74,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.exam_details', {
-		cache: false,
 		url: "/exam_details",
 		views: {
 			'menuContent' :{
@@ -87,7 +83,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.fees', {
-		cache: false,
 		url: "/fees",
 		views: {
 			'menuContent' :{
@@ -97,7 +92,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.paymentCallBack', {
-		cache: false,
 		url: "/paymentCallBack",
 		views: {
 			'menuContent' :{
@@ -107,7 +101,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.view_test_details', {
-		cache: false,
 		url: "/view_test_details?test_ins_guid",
 		views: {
 			'menuContent' :{
@@ -135,7 +128,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.user_feedback', {
-		cache: false,
 		url: "/user_feedback",
 		views: {
 			'menuContent' :{
@@ -145,7 +137,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.attendance', {
-		cache: false,
 		url: "/attendance",
 		views: {
 			'menuContent' :{
@@ -164,7 +155,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
 	})
 	.state('eventmenu.event_details', {
-		cache: false,
 		url: "/event_details",
 		views: {
 			'menuContent' :{
@@ -174,7 +164,6 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 		}
     })
 	.state('eventmenu.calender', {
-		cache: false,
 		url: "/calender",
 		views: {
 			'menuContent' :{
