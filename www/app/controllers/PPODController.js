@@ -336,7 +336,7 @@ app.controller('mainController',function($scope,PPODService,$http,$window,$docum
 		if(sharedProperties.getIsLogin() == false){
 			$scope.$emit('loginStatus', param);
 		}
-		$scope.loading = true;
+		//$scope.loading = true;
 		//$scope.fnInit();
 		
 	});
