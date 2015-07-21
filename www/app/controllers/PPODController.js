@@ -203,6 +203,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		if($ionicSideMenuDelegate.isOpenLeft()){
 			$ionicSideMenuDelegate.toggleLeft();
 		}
+		$scope.fnInit();
 	});
 	$scope.$on('$ionicView.leave', function(){
 		//$ionicSideMenuDelegate.canDragContent(true);
@@ -275,7 +276,7 @@ app.controller('loginController',function($scope,PPODService,$http,$window,$docu
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
-	$scope.fnInit();
+	
 });
 
 
