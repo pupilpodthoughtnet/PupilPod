@@ -55,6 +55,7 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			$scope.loginTrue = false;
 			$scope.students = myCache.get('students');
 			$scope.menuList = myCache.get('menuList');
+			$scope.DeshBoardmenuList = myCache.get('DeshBoardmenuList');
 			$scope.student_name = sharedProperties.getStudentSelectedName();
 			$scope.studentImage = "http://"+sharedProperties.getInstName()+"/"+myCache.get('studentImage');
 		}
@@ -96,8 +97,8 @@ app.controller('PPODController',function($scope,PPODService,$window,$rootScope,$
 			break;
 
         case 'error':
-          $cordovaDialogs.alert(notification.msg, "Error")
-          break;
+			$cordovaDialogs.alert(notification.msg, "Error")
+			break;
 
         default:
 			$cordovaDialogs.alert("An unknown GCM event has occurred", "Event")

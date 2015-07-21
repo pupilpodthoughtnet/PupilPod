@@ -182,9 +182,12 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 				$scope.login = true;
 				$scope.students = data.studentDetails;
 				$scope.menuList = data.menuList;
+				$scope.DeshBoardmenuList = data.DeshBoardmenuList;
 				myCache.put('students', data.studentDetails);
 				myCache.put('main_students_guid', data.studentDetails[0]['student_guid']);
 				myCache.put('menuList', data.menuList);
+				myCache.put('DeshBoardmenuList', data.DeshBoardmenuList);
+				
 				
 				self.AddValueToDB($scope,'username',data.userName);
 				self.AddValueToDB($scope,'password',data.password);
