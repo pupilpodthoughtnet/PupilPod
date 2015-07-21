@@ -6,7 +6,7 @@
 			<div ng-repeat="menu in DeshBoardmenuList">
 				<div ng-if="menu.feature_id == 'Message_DashBoard'">
 					<div class="card">
-						<div class="item item-divider yellowbar" ng-click="goToView('eventmenu.messages')">
+						<div class="{{menu.class}}" ng-click="goToView('eventmenu.messages')">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Messages</div>
 							<button class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
@@ -33,7 +33,7 @@
 			
 				<div ng-if="menu.feature_id == 'MenuAttendance_DashBoard'">
 					<div class="card">
-						<div class="item item-divider pinkbar"  ng-click="goToView('eventmenu.attendance')">
+						<div class="{{menu.class}}"  ng-click="goToView('eventmenu.attendance')">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Attendance</div>
 							<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
@@ -49,7 +49,7 @@
 				</div>
 				<div ng-if="menu.feature_id == 'MenuCalender_DashBoard'">
 					<div class="card">
-						<div class="item item-divider greenbar"  ng-click="goToView('eventmenu.calender')">
+						<div class="{{menu.class}}"  ng-click="goToView('eventmenu.calender')">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Calender Events</div>
 							<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
@@ -77,7 +77,7 @@
 				<div ng-if="menu.feature_id == 'MenuFees_DashBoard'">
 				
 					<!--<div class="card">
-						<div class="item item-divider yellowbar">
+						<div class="{{menu.class}}">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Fees</div><i style="float:right" class="icon ion-chevron-right"></i>
 							</div>
@@ -92,7 +92,7 @@
 				</div>
 				<div ng-if="menu.feature_id == 'MenuProgram_DashBoard'">
 					<div class="card">
-						<div class="item item-divider yellowbar">
+						<div class="{{menu.class}}">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Program</div>
 							<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
@@ -108,7 +108,7 @@
 				</div>
 				<div ng-if="menu.feature_id == 'MenuProfile_DashBoard'">
 					<div class="card">
-						<div class="item item-divider pinkbar">
+						<div class="{{menu.class}}">
 							<div class="row" style="padding:0px;">
 							<div style="width:100%">Profile</div>
 							<button ng-click="" class="button button-very-small button-clear button-dark icon icon-right ion-chevron-right"></button>
