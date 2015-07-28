@@ -1,0 +1,71 @@
+<ion-view view-title="Welcome">
+	<ion-content>
+		<div class="item item-divider" ng-init="getPaymentModes()">
+			Confirm MakePayment
+		</div>
+		<div ng-show="loading">
+			<div style="text-align:center;">
+				<ion-spinner icon="ripple" class="spinner-balanced"></ion-spinner>
+			</div>
+		</div>
+		<div class="card" >
+			<div class="row row-center"  style="height:54px;margin-bottom:2px;">
+				<div class="col col-50"  style="border-right:solid 2px #EFEFEF">Invoice Amount </div>
+				<div class="col col-50" style="display:inline;">
+					<span>&#x20B9;&nbsp;</span><span  ng-bind="disp_transactionAmtTodisplay"></span>
+				</div>
+			</div>
+			<div class="row row-center"  style="height:54px;margin-bottom:2px;" ng-show="discountlabel">
+				<div class="col col-50"  style="border-right:solid 2px #EFEFEF">Discount </div>
+				<div class="col col-50"  style="display:inline;" >
+					<span>&#x20B9;&nbsp;</span><span  ng-bind="disp_discountAmount"></span>
+				</div>
+			</div>
+			<div class="row row-center"  style="height:54px;margin-bottom:2px;">
+				<div class="col col-50"  style="border-right:solid 2px #EFEFEF">Fine </div>
+				<div class="col col-50" style="display:inline;" >
+					<span>&#x20B9;&nbsp;</span><span ng-bind="disp_totFine"></span>
+				</div>
+			</div>
+			<div class="row row-center"  style="height:54px;margin-bottom:2px;">
+				<div class="col col-50"  style="border-right:solid 2px #EFEFEF">Total Amount </div>
+				<div class="col col-50" style="display:inline;">
+					<span>&#x20B9;&nbsp;</span><span  ng-bind="disp_totalAmtPyng"></span>
+				</div>
+			</div>
+			
+			<!--<div class="row row-center" style="height:54px;margin-bottom:2px;">
+				  <div class="col col-33"  style="border-right:solid 2px #EFEFEF">Amount in words</div>
+				<div class="col col-67" ng-bind="AmountInwords"></div>
+			</div>-->
+			<div class="row row-center" style="height:54px;margin-bottom:2px;" ng-if="noOfPaymentModesIsOne">
+				  <div class="col col-50" style="border-right:solid 2px #EFEFEF;" >Payment Mode</div>
+				<div class="col col-50" ng-bind="selectedMode.payment_mode" ></div>
+			</div>
+			<div class="row row-center"  style="height:54px;margin-bottom:2px;" ng-if="!noOfPaymentModesIsOne">
+				<div class="col col-50" style="border-right:solid 2px #EFEFEF;">
+				  Payment Mode
+				</div>
+				<div class="col col-50" >
+					<select ng-model="selectedMode.payment_mode">
+						<option ng-selected="{{payment_mode.custom_key == selectedMode.payment_mode}}" 
+						ng-repeat="payment_mode in paymentModes" 
+						value="{{payment_mode.custom_key}}">{{payment_mode.custom_value}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row" style="padding-left:10px;padding-top:10px;" ng-show="!loading" >
+				<button class ="button button-stable" type="button" id="backBtn" ng-click="backBtn()" style="margin-right:14px;">Back </button>
+				<button  class ="button button-positive" type="button" id="confirmMakePymt" ng-click="confirmMakePayment()">Confirm Payment </button>
+			</div>
+			
+		</div>
+		<div class="card" style="background-color:#f5f5f5;">
+			<div ng-repeat="lines in noteList" style="padding:5px;text-align:left;"  >
+				<small ng-bind="lines.title" ></small>
+			</div>
+			 <small style="padding:5px;text-align:left;color:#C70000;">Fees levied on transactions will not be refunded. </small>
+		</div>
+	</ion-content>
+</ion-view>
+

@@ -460,31 +460,41 @@ app.controller('TestDetailsForStudent',function($scope,PPODService,$http,$window
 });
 
 app.controller('feesController',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
-	
 	$scope.$on('$ionicView.enter', function(){
-		if($ionicSideMenuDelegate.isOpenLeft()){
-			$ionicSideMenuDelegate.toggleLeft();
-		}
 		$scope.fnInit();
 	});
 	var ref = "";
+	$scope.alerts = []; 
 	$scope.fnInit = function(){
-		$scope.$emit('modelOffEvent', true);	
-    }
-	$scope.makePayment = function(payment_id){
-		ref = $window.open('http://thoughtnet.pupilpod.in/paymenttest.php', '_blank', 'location=no');
-        ref.addEventListener('loadstart', function(event) {  });
-        ref.addEventListener('loadstop', function(event) {  
-			if (event.url.match("/close")) {
-				ref.close();
+		$scope.$emit('modelOffEvent', true);
+		$scope.makePaymentshow=false;
+		$scope.loading = true;
+		PPODService.getFeeInvoicesForStudent($scope);
+	}
+	
+	$scope.makePayment = function(){
+		$scope.loading = true;
+		var checkedInvoicesCount=0;
+		var selectedInvoices=[];
+		var selectedTotalAmount=0;
+		for(var i=0;i<$scope.invoices_list.length;i++){
+			if($scope.invoices_list[i]['checked']==true){
+				selectedTotalAmount=selectedTotalAmount+Number($scope.invoices_list[i]['amount_pending']);
+				selectedInvoices.push($scope.invoices_list[i])
+				checkedInvoicesCount++;
 			}
-		});
-        ref.addEventListener('loaderror', function(event) {
-			if (event.url.match("/close")) {
-				ref.close();
-			} 
-		});
-		ref.addEventListener('exit', function(event) { $state.go('eventmenu.paymentCallBack'); });
+		}
+		if(checkedInvoicesCount==0){
+			navigator.notification.alert('Select atleast one Invoice !');
+			$scope.loading = false;
+			return false;
+		}
+		//console.log(selectedInvoices);
+		sharedProperties.setStudentInvoices(selectedInvoices);
+		sharedProperties.setSelectedTotalAmount(selectedTotalAmount);
+		//sharedProperties.setSelectedMode($scope.selectedMode.payment_mode);
+		
+		$state.go('eventmenu.confirmMakePayment');
 	}
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -492,6 +502,71 @@ app.controller('feesController',function($scope,PPODService,$http,$window,$docum
 		  $scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
     };
+	$scope.callCheck=function(){
+		console.log($scope.invoices_list);
+		console.log($scope);
+	}
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
+	$scope.setValue=function(){
+		console.log("modes--->"+$scope.selectedMode);
+	}
+});
+app.controller('confirmMakePayment',function($scope,PPODService,$http,$window,$document,sharedProperties,$state,$ionicSideMenuDelegate,$timeout){
+	$scope.getPaymentModes=function(){
+		$scope.loading = true;
+		$scope.invoices_list=sharedProperties.getStudentInvoices();
+		
+		PPODService.getPaymentModes($scope);
+		PPODService.getDiscountAndFineInfo($scope);
+		PPODService.getConfirmMakePaymentNotes($scope);
+		
+	}
+	$scope.selectedTotalAmount=sharedProperties.getSelectedTotalAmount();
+	$scope.backBtn=function(){
+		$state.go('eventmenu.fees');
+	}
+	$scope.confirmMakePayment=function(){
+		$scope.loading = true;
+		var selectedPaymentMode=$scope.selectedMode.payment_mode;
+		
+		if(selectedPaymentMode=='-1'){
+			navigator.notification.alert('Select Payment Mode !');
+			$scope.loading = false;
+			return false;
+		}
+		console.log("selectedMode====>"+$scope.selectedMode.payment_mode);
+		var studentGuid=sharedProperties.getStudentSelectedGuid();
+		var invoices=JSON.stringify($scope.invoices_list);
+		var totalAmount=$scope.totalAmtPyng;
+		var fineAmount=$scope.totFine;
+		var params="?studentGuid="+studentGuid+"&invoices="+invoices+"&totalAmount="+totalAmount+"&payment_mode="+selectedPaymentMode+"&fine="+fineAmount;
+		ref = $window.open('http://'+sharedProperties.getInstName()+'/sites/all/tnetviews/mobile_app_payment_before.php'+params, '_blank', 'location=no');
+        ref.addEventListener('loadstart', function(event) {  });
+        ref.addEventListener('loadstop', function(event) {
+			if (event.url.match("/close")) {
+				var eventUrl=event.url;
+				eventUrl=eventUrl.split("?");
+				var transactionStatus=eventUrl[eventUrl.length-1];
+				if(transactionStatus=='fail'){
+					navigator.notification.alert("Your payment is not successful. Please try again later.");				
+				}
+				else if(transactionStatus=='success'){
+					navigator.notification.alert("Your payment is successful.");		
+				}
+				$state.go('eventmenu.fees'); 
+				ref.close();
+			}
+		});
+        ref.addEventListener('loaderror', function(event) {
+			if (event.url.match("/close")) {
+				$state.go('eventmenu.fees'); 
+				ref.close();
+			} 
+		});
+		ref.addEventListener('exit', function(event) { $state.go('eventmenu.fees'); });		
+	}
 });
 
 app.controller('logoutController',function($scope,PPODService,sharedProperties,$ionicSideMenuDelegate,$ionicHistory,$ionicPopup){

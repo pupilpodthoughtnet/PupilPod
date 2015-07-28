@@ -91,6 +91,15 @@ app.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $url
 			}
 		}
     })
+	.state('eventmenu.confirmMakePayment', {
+		url: "/confirmMakePayment",
+		views: {
+			'menuContent' :{
+				templateUrl: 'app/views/others/confirmMakePayment.html',
+				controller: "confirmMakePayment"
+			}
+		}
+    })
 	.state('eventmenu.paymentCallBack', {
 		url: "/paymentCallBack",
 		views: {
@@ -228,6 +237,9 @@ app.service('sharedProperties', function () {
 	var month='';
 	var year='';
 	var _publicationRow='';
+	var invoices_list=[];
+	var SelectedTotalAmount=0;
+	var SelectedMode='';
 	return {
 		getRegKey: function() {
 			return reg_key;
@@ -324,6 +336,24 @@ app.service('sharedProperties', function () {
         },
         getPublicationRow:function(){
             return this._publicationRow;
-        }
+        },
+		getStudentInvoices: function(){
+			return invoices_list;
+		},
+		setStudentInvoices: function(selectedInvoices){
+			invoices_list = selectedInvoices;
+		},
+		getSelectedTotalAmount:function(){
+			return SelectedTotalAmount;
+		},
+		setSelectedTotalAmount:function(totalAmount){
+			SelectedTotalAmount=totalAmount;
+		},
+		getSelectedMode:function(){
+			return SelectedMode;
+		},
+		setSelectedMode:function(mode){
+			SelectedMode=mode;
+		}
 	};
 });

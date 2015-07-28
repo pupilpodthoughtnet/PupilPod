@@ -7544,7 +7544,7 @@ input[type=radio][disabled],input[type=radio][readonly],input[type=checkbox][dis
 .checkbox {
   position: relative;
   display: inline-block;
-  padding: 7px;
+  padding: 7px 0px 0px 0px;
   cursor: pointer;
 }
 
@@ -7730,7 +7730,7 @@ input[type=radio][disabled],input[type=radio][readonly],input[type=checkbox][dis
 }
 
 .item-checkbox {
-  padding-left: 60px;
+  padding-left: 30px;
 }
 
 .item-checkbox.active {

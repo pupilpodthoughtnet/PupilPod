@@ -622,6 +622,158 @@ app.service('PPODService',function($http,url,$window,$timeout,sharedProperties,$
 			myCache.put('allMessages',tempData1);
 			},errorHandlerTransaction,nullHandler);
 	};
+	this.getFeeInvoicesForStudent = function($scope){
+		 
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"getStudentFeeInvoices",
+			"parameters":[null,{'student_guid' : sharedProperties.getStudentSelectedGuid()}]
+        });
+		console.log("from fee invoices student Guid " + sharedProperties.getStudentSelectedGuid()+" urls "+url);
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param)
+		.success(function(data, status, headers, config) {
+		   if(data.length >0){
+				$scope.loading = false;
+				$scope.invoices_list = data;
+				var fullyPaidInvoicesCount=0;
+				for(var i=0;i<$scope.invoices_list.length;i++){
+					if($scope.invoices_list[i]['invoice_status']=='FULLY_PAID')
+						fullyPaidInvoicesCount++;
+				}
+				if(fullyPaidInvoicesCount==$scope.invoices_list.length){
+					$scope.makePaymentshow=false;
+				}
+				else if($scope.invoices_list.length==0){
+					$scope.makePaymentshow=false;
+				}
+				else{
+					$scope.makePaymentshow=true;
+				}
+			}
+			else{
+				$scope.loading = false;
+			}
+		})
+		.error(function(data, status, headers, config){
+			console.log("coming to error"+data);
+		});		
+	};
+	this.getPaymentModes = function($scope){
+		 
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"getPaymentModes",
+			"parameters":[null]
+        });
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param)
+		.success(function(data, status, headers, config) {
+		   if(data.length >0){
+				$scope.loading = false;
+				$scope.paymentModes = data;
+				$scope.noOfPaymentModesIsOne=false;
+				if(data.length==2){
+					$scope.noOfPaymentModesIsOne=true;
+					$scope.selectedMode = {
+						payment_mode: data[1]['custom_key']
+					}
+				}
+				else{
+					$scope.selectedMode = {
+						payment_mode: '-1'
+					}
+				}
+				
+				
+			}
+			else{
+				$scope.loading = false;
+			}
+		})
+		.error(function(data, status, headers, config){
+			console.log("coming to error"+data);
+		});		
+	};
+	this.getDiscountAndFineInfo = function($scope){
+		 
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"getDiscountAndFineInfo",
+			"parameters":[null,{'invoices_list':$scope.invoices_list}]
+        });
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param)
+		.success(function(data, status, headers, config) {
+			$scope.loading = false;
+			if(data['discount']!=0&& data['discount']!=null && data['discount']!=''){
+				$scope.discountlabel=true;
+			}
+			else{
+				$scope.discountlabel=false;
+			}
+			$scope.discountAmount=data['discount'];
+			$scope.transactionAmtTodisplay=data['transactionAmtTodisplay'];
+			$scope.totFine=data['totFine'];
+			$scope.transactionAmt=data['transactionAmt'];
+			$scope.totalAmtPyng=data['totalAmtPyng'];
+			$scope.AmountInwords=data['Amount_in_words'];
+			
+			$scope.disp_discountAmount=data['disp_discount'];
+			$scope.disp_transactionAmtTodisplay=data['disp_transactionAmtTodisplay'];
+			$scope.disp_totFine=data['disp_totFine'];
+			$scope.disp_transactionAmt=data['disp_transactionAmt'];
+			$scope.disp_totalAmtPyng=data['disp_totalAmtPyng'];
+			$scope.AmountInwords=data['Amount_in_words'];
+			
+		})
+		.error(function(data, status, headers, config){
+			console.log("coming to error"+data);
+		});		
+	};
+	this.getConfirmMakePaymentNotes = function($scope){
+		 
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"getConfirmMakePaymentNotes",
+			"parameters":[null,{'invoices_list':$scope.invoices_list}]
+        });
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param)
+		.success(function(data, status, headers, config) {
+			$scope.loading = false;
+			$scope.noteList=data;			
+		})
+		.error(function(data, status, headers, config){
+			console.log("coming to error"+data);
+		});		
+	};
+	this.confirmMakePayment = function($scope){
+		var param = JSON.stringify({
+			"serviceName":"TnetMobileService", 
+			"methodName":"confirmPayment",
+			"parameters":[null,{invoicesArray:$scope.invoices_list,totalAmount:$scope.selectedTotalAmount,mode:$scope.selectedPaymentMode}]
+        });
+		var tempUrl = "http://"+sharedProperties.getInstName()+"/"+url;
+		$http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+		$http.post(tempUrl, param)
+		.success(function(data, status, headers, config) {
+		   if(data.length >0){
+				$scope.loading = false;
+			}
+			else{
+				$scope.loading = false;
+			}
+		})
+		.error(function(data, status, headers, config){
+			$scope.loading = false;
+			return false;
+		});	
+	};
 });
 
 
